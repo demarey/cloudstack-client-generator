@@ -2,7 +2,6 @@ import hmac, hashlib
 import base64
 import os, sys
 import urllib,urllib2
-import xmltodict
 import json
 
 class BaseCloudStackClient:
@@ -47,7 +46,6 @@ class BaseCloudStackClient:
 
         try:
             response = urllib2.urlopen(self.url+command).read()
-            #mydict = xmltodict.parse(response)
             mydict = json.loads(response)
             return mydict
         except Exception, e:
