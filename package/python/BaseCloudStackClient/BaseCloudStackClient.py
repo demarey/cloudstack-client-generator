@@ -22,11 +22,11 @@ class BaseCloudStackClient:
         for arg in arguments:
             if arguments[arg] != '':
                 command = command+'&'+arg+'='+arguments[arg]
+                command = command.replace(' ','%20')
 
         if self.auth:
             command = command+'&apikey='+self.apiKey+'&response=json'
 
-            command = command.replace(' ','%20')
 
             # Sort command
             command = command.split("&")
