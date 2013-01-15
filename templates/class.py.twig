@@ -6,10 +6,10 @@
     For the full copyright and license information, please view the LICENSE
     file that was distributed with this source code.
 #}
-from basecloudstackclient import BaseCloudStackClient
+from BaseCloudStackClient import BaseCloudStackClient
 
 
-class {{ config.class_name }}(BaseCloudStackClient):
+class {{ config.class_name }}(BaseCloudStackClient.BaseCloudStackClient):
 
 {% for method in methods %}
 {% include "method.py.twig" with {'method' : method, 'config' : config} %}
