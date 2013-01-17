@@ -17,35 +17,36 @@ class BaseCloudStackClient:
         self.url=url
 
     def request(self, method, arguments):
-        command = "command="+method
 
-        for arg in arguments:
-            if arguments[arg] != '':
-                command = command+'&'+arg+'='+arguments[arg]
-                command = command.replace(' ','%20')
+        arguments['command'] = method
+        arguments['response'] = 'json'
 
         if self.auth:
-            command = command+'&apikey='+self.apiKey+'&response=json'
+            arguments['apikey'] = self.apiKey
 
+        params = []
 
-            # Sort command
-            command = command.split("&")
-            command.sort(key=lambda x: x[0])
-            command = "&".join(command)
+        keys = sorted(arguments.keys())
 
-            command = urllib.quote(command,'&=')
+        for k in keys:
+            if arguments[k] != '':
+                params.append(k + '=' + urllib.quote_plus(arguments[k]).replace("+","%20"))
 
-            digest = base64.b64encode(hmac.new(self.secretKey, command.lower(), hashlib.sha1).digest())
+        query = '&'.join(params)
 
-            # generate the digest
-            #transform the digest in an url compliant way
-            digest = digest.replace('+','%2B')
-            digest = digest.replace('=','%3D')
+        if self.auth:
+            digest = base64.b64encode(
+                hmac.new(
+                    self.secretKey, 
+                    msg=query.lower(), 
+                    digestmod=hashlib.sha1
+                ).digest()
+            )
             
-            command = command + '&signature=' + digest
+            query += '&signature=' + urllib.quote_plus(digest)
 
         try:
-            response = urllib2.urlopen(self.url+command).read()
+            response = urllib2.urlopen(self.url+'?'+query).read()
             mydict = json.loads(response)
             return mydict
         except Exception, e:
