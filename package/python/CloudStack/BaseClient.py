@@ -4,7 +4,7 @@ import os, sys
 import urllib,urllib2
 import json
 
-class BaseCloudStackClient:
+class BaseClient:
     def __init__(self, url, apiKey=None, secretKey=None):
 
         if (apiKey and secretKey):

@@ -1,7 +1,7 @@
-from BaseCloudStackClient import BaseCloudStackClient
+from CloudStack import BaseClient
 
 
-class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
+class Client(BaseClient.BaseClient):
 
     def createNetworkOffering(self, displayText, guestIpType, name, supportedServices, trafficType, availability = "", conserveMode = "", networkRate = "", serviceCapabilityList = "", serviceOfferingId = "", serviceProviderList = "", specifyIpRanges = "", specifyVlan = "", tags = ""):
         '''
