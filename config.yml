@@ -203,6 +203,7 @@ camel_case:
   publicport: publicPort
   queryfilter: queryFilter
   requireshvm: requireShvm
+  resourceid: resourceid
   resourceids: resourceIds
   resourcestate: resourcestate
   resourcetype: resourceType
