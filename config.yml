@@ -1,14 +1,14 @@
 # URL of the API reference table of contents
 # check out if you have the latest version url here:
-# http://cloud.mindtouch.us/CloudStack_Documentation/API_Reference%3A_CloudStack
-#api_ref_toc_url: http://download.cloud.com/releases/3.0.0/api_3.0.0/TOC_Root_Admin.html 
-#api_ref_toc_url: http://download.cloud.com/releases/3.0.0/api_3.0.0/TOC_Domain_Admin.html 
-api_ref_toc_url: http://download.cloud.com/releases/3.0.0/api_3.0.0/TOC_User.html 
+# http://cloudstack.apache.org/docs/api/index.html
+#api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.0.0/TOC_Root_Admin.html 
+api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.0.0/TOC_Domain_Admin.html
+#api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.0.0/TOC_User.html 
 
-#api type (domain_admin, root_admin or user)
+# API level (domain_admin, root_admin or user)
 #apilevel: root_admin
-#apilevel: domain_admin
-apilevel: user
+apilevel: domain_admin
+#apilevel: user
 
 # Language for generated code (supported: php, python)
 language: php
@@ -42,10 +42,12 @@ camel_case:
   bits: bits
   bootable: bootable
   broadcastdomainrange: broadcastDomainRange
+  canusefordeploy: canUseForDeploy
   category: category
   certificate: certificate
   changecidr: changeCidr
   checksum: checksum
+  cidr: cidr
   cidrlist: cidrList
   cleanup: cleanup
   clusterid: clusterId
@@ -54,6 +56,7 @@ camel_case:
   conservemode: conserveMode
   cpunumber: cpuNumber
   cpuspeed: cpuSpeed
+  customer: customer
   customized: customized
   description: description
   destinationphysicalnetworkid: destinationPhysicalNetworkId
@@ -72,6 +75,7 @@ camel_case:
   domainId: domainId
   domainid: domainId
   domainsuffix: domainSuffix
+  dpd: dpd
   duration: duration
   email: email
   enabled: enabled
@@ -79,6 +83,8 @@ camel_case:
   endip: endIp
   endport: endPort
   entrytime: entryTime
+  esplifetime: espLifeTime
+  esppolicy: espPolicy
   fetchlatest: fetchLatest
   fingerprint: fingerprint
   firstname: firstName
@@ -87,9 +93,11 @@ camel_case:
   forloadbalancing: forLoadBalancing
   format: format
   forvirtualnetwork: forVirtualNetwork
+  forvpc: forVpc
   fwdevicecapacity: fwDeviceCapacity
   fwdeviceid: fwDeviceId
   gateway: gateway
+  gatewayid: gatewayId
   group: group
   groupid: groupId
   guestcidraddress: guestCidrAddress
@@ -103,6 +111,8 @@ camel_case:
   icmptype: icmpType
   id: id
   ids: ids
+  ikelifetime: ikeLifeTime
+  ikepolicy: ikePolicy
   inline: inline
   internaldns1: internalDns1
   internaldns2: internalDns2
@@ -110,12 +120,14 @@ camel_case:
   ipaddress: ipAddress
   ipaddressid: ipAddressId
   iprange: ipRange
+  ipsecpsk: ipsecPsk
   iptonetworklist: ipToNetWorkList
   iqn: iqn
   iscleanuprequired: isCleanUpRequired
   isdefault: isDefault
   isextractable: isExtractable
   isfeatured: isFeatured
+  isoid: isoId
   isofilter: isoFilter
   isolationmethods: isolationMethods
   ispublic: isPublic
@@ -178,21 +190,26 @@ camel_case:
   policyid: policyId
   poolname: poolName
   port: port
+  privateendport: privateEndPort
   privatekey: privateKey
   privateport: privatePort
   projectid: projectId
   projectids: projectids
   protocol: protocol
   provider: provider
+  publicendport: publicEndPort
   publicipid: publicIpId
   publickey: publicKey
   publicport: publicPort
   queryfilter: queryFilter
   requireshvm: requireShvm
+  resourceids: resourceIds
   resourcestate: resourcestate
   resourcetype: resourceType
   restartrequired: restartRequired
   role: role
+  s2scustomergatewayid: s2sCustomerGatewayId
+  s2svpngatewayid: s2sVpnGatewayId
   schedule: schedule
   searchbase: searchBase
   securitygroupenabled: securityGroupEnabled
@@ -222,6 +239,7 @@ camel_case:
   startdate: startDate
   startip: startIp
   startport: startPort
+  startvm: startVm
   state: state
   storageid: storageId
   storagetype: storageType
@@ -253,5 +271,7 @@ camel_case:
   vmwarenetworklabel: vmwareNetworkLabel
   volumeid: volumeId
   volumename: volumeName
+  vpcid: vpcId
+  vpcofferingid: vpcOfferingId
   xennetworklabel: xenNetworkLabel
   zoneid: zoneId
