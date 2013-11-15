@@ -152,3 +152,25 @@ Example:
 This command generates the PHP code for that method. The following example will output the code given at the begin of this document:
 
     php generator.php method stopVirtualMachine
+
+Packaging
+---------
+
+Base packaging is included. This packages are base classes to be able to use the generated Class from `php generator.php class`
+
+#Python
+
+Use the generated api from the repository (ROOT ADMIN API)
+----------------------------------------------------------
+* Go to the package/python directory
+* then install using distutils
+
+    python setup.py install
+
+Generate from the latest document or different api level
+--------------------------------------------------------
+From the base dir, set python language in config.yml and choose your the api level you wish to use. Then generate the CloudStackClient file, and redirect the output to the python package
+
+    php generator.php class > package/python/CloudStackClient/CloudStackClient.py 
+
+Install the package as stated above

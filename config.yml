@@ -11,7 +11,7 @@ apilevel: domain_admin
 #apilevel: user
 
 # Language for generated code (supported: php, python)
-language: php
+language: python
 
 # Generated class name
 class_name: CloudStackClient
