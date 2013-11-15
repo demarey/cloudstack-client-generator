@@ -169,6 +169,6 @@ Generate from the latest document or different api level
 --------------------------------------------------------
 From the base dir, set python language in config.yml and choose your the api level you wish to use. Then generate the CloudStackClient file, and redirect the output to the python package
 
-    php generator.php class > package/python/CloudStackClient/CloudStackClient.py 
+    php generator.php class > package/python/CloudStack/Client.py 
 
 Install the package as stated above
