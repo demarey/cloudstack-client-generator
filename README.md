@@ -163,9 +163,7 @@ Base packaging is included. This packages are base classes to be able to use the
 Use the generated api from the repository (ROOT ADMIN API)
 ----------------------------------------------------------
 * Go to the package/python directory
-* then install using distutils
-
-    python setup.py install
+* then install using [distutils](http://docs.python.org/2/distutils/introduction.html): ```python setup.py install```
 
 Generate from the latest document or different api level
 --------------------------------------------------------
