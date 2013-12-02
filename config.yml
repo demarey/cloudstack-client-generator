@@ -1,9 +1,9 @@
 # URL of the API reference table of contents
 # check out if you have the latest version url here:
 # http://cloudstack.apache.org/docs/api/index.html
-#api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.0.0/TOC_Root_Admin.html 
-api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.0.0/TOC_Domain_Admin.html
-#api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.0.0/TOC_User.html 
+#api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.2/TOC_Root_Admin.html 
+api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.2/TOC_Domain_Admin.html
+#api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.2/TOC_User.html 
 
 # API level (domain_admin, root_admin or user)
 #apilevel: root_admin
@@ -11,7 +11,7 @@ apilevel: domain_admin
 #apilevel: user
 
 # Language for generated code (supported: php, python)
-language: python
+language: php
 
 # Generated class name
 class_name: CloudStackClient
@@ -27,14 +27,20 @@ camel_case:
   accountid: accountId
   accounts: accounts
   accounttype: accountType
+  aclid: aclId
+  action: action
   acltype: aclType
   activeonly: activeOnly
+  affinitygroupid: affinityGroupId
+  affinitygroupids: affinityGroupIds
+  affinitygroupnames: affinityGroupNames
   aggregatename: aggregateName
   algorithm: algorithm
   allocatedonly: allocatedOnly
   allocationstate: allocationState
   applied: applied
   associatednetworkid: associatedNetworkId
+  autoscaleuserid: autoscaleUserId
   availability: availability
   available: available
   binddn: bindDN
@@ -53,21 +59,29 @@ camel_case:
   clusterid: clusterId
   clustername: clusterName
   clustertype: clusterType
+  conditionid: conditionId
+  conditionids: conditionIds
   conservemode: conserveMode
+  counterid: counterId
+  counterparam: counterParam
   cpunumber: cpuNumber
   cpuspeed: cpuSpeed
   customer: customer
   customized: customized
   description: description
   destinationphysicalnetworkid: destinationPhysicalNetworkId
-  destzoneid: destzoneId
+  destroyvmgraceperiod: destroyVmGracePeriod
+  destzoneid: destZoneId
   details: details
   deviceid: deviceId
   dhcpprovider: dhcpProvider
   diskofferingid: diskOfferingId
   disksize: diskSize
   displayname: displayName
+  displaynetwork: displayNetwork
   displaytext: displayText
+  displayvm: displayVm
+  displayvolume: displayVolume
   dns1: dns1
   dns2: dns2
   dnssearchorder: dnsSearchOrder
@@ -81,6 +95,7 @@ camel_case:
   enabled: enabled
   enddate: endDate
   endip: endIp
+  endipv6: endIpV6
   endport: endPort
   entrytime: entryTime
   esplifetime: espLifeTime
@@ -98,11 +113,18 @@ camel_case:
   fwdeviceid: fwDeviceId
   gateway: gateway
   gatewayid: gatewayId
+  gslbdomainname: gslbDomainName
+  gslblbmethod: gslblbMethod
+  gslbservicetype: gslbServiceType
+  gslbstickysessionmethodname: gslbStickySessionMethodName
+  gslblbruleweightsmap: gslblbRuleWeightsMap
   group: group
   groupid: groupId
   guestcidraddress: guestCidrAddress
   guestiptype: guestIpType
+  guestvmcidr: guestVmCidr
   haenable: haEnable
+  healthythreshold: healthyTreshold
   hostid: hostId
   hostname: hostname
   hosttags: hosttags
@@ -113,10 +135,17 @@ camel_case:
   ids: ids
   ikelifetime: ikeLifeTime
   ikepolicy: ikePolicy
+  imagestoreuuid: imageStoreUuid
   inline: inline
+  instanceport: instancePort
   internaldns1: internalDns1
   internaldns2: internalDns2
+  interval: interval
+  intervaltime: intervalTime
   intervaltype: intervalType
+  ip6address: ip6Address
+  ip6cidr: ip6Cidr
+  ip6gateway: ip6Gateway
   ipaddress: ipAddress
   ipaddressid: ipAddressId
   iprange: ipRange
@@ -125,14 +154,18 @@ camel_case:
   iqn: iqn
   iscleanuprequired: isCleanUpRequired
   isdefault: isDefault
+  isdynamicallyscalable: isDynamicallyScalable
   isextractable: isExtractable
   isfeatured: isFeatured
   isoid: isoId
   isofilter: isoFilter
+  isolatedpvlan: isolatedPvlan
   isolationmethods: isolationMethods
+  isportable: isPortable
   ispublic: isPublic
   isready: isReady
   isrecursive: isRecursive
+  isrouting: isRouting
   isshared: isShared
   issourcenat: isSourceNat
   isstaticnat: isStaticNat
@@ -152,13 +185,19 @@ camel_case:
   level: level
   limitcpuuse: limitCpuUse
   listall: listAll
+  livemigrate: liveMigrate
+  loadbalancerrulelist: loadBalancerRuleList
   lock: lock
   managedstate: managedState
   max: max
   maxguestslimit: maxGuestsLimit
+  maxiops: maxIops
+  maxmembers: maxMembers
   maxsnaps: maxSnaps
   memory: memory
   methodname: methodName
+  miniops: minIops
+  minmembers: minMembers
   mode: mode
   name: name
   netmask: netmask
@@ -172,12 +211,15 @@ camel_case:
   networkspeed: networkSpeed
   networktype: networkType
   newname: newName
+  nicid: nicId
   nspid: nspId
+  number: number
   offerha: offerHa
   op: op
   openfirewall: openFirewall
   oscategoryid: osCategoryId
   ostypeid: osTypeId
+  otherdeployparams: otherDeployParams
   page: page
   pagesize: pageSize
   param: param
@@ -185,33 +227,44 @@ camel_case:
   password: password
   passwordenabled: passwordEnabled
   path: path
+  pingpath: pingPath
   physicalnetworkid: physicalNetworkId
   podid: podId
   policyid: policyId
   poolname: poolName
   port: port
   privateendport: privateEndPort
+  privateip: privateIp
   privatekey: privateKey
   privateport: privatePort
   projectid: projectId
   projectids: projectids
   protocol: protocol
   provider: provider
+  providertype: providerType
   publicendport: publicEndPort
   publicipid: publicIpId
   publickey: publicKey
   publicport: publicPort
   queryfilter: queryFilter
+  quiettime: quietTime
+  regionid: regionId
+  relationaloperator: relationalOperator
   requireshvm: requireShvm
   resourceid: resourceid
   resourceids: resourceIds
   resourcestate: resourcestate
   resourcetype: resourceType
+  responsetimeout: responseTimeout
   restartrequired: restartRequired
   role: role
   s2scustomergatewayid: s2sCustomerGatewayId
   s2svpngatewayid: s2sVpnGatewayId
+  scaledownpolicyids: scaleDownPolicyIds
+  scaleuppolicyids: scaleUpPolicyIds
   schedule: schedule
+  scheme: scheme
+  shrinkok: shrinkOk
   searchbase: searchBase
   securitygroupenabled: securityGroupEnabled
   securitygroupid: securityGroupId
@@ -223,15 +276,20 @@ camel_case:
   servicelist: serviceList
   serviceofferingid: serviceOfferingId
   serviceproviderlist: serviceProviderList
+  sourceipaddressnetworkid: sourceIpAddressNetworkId
   showcapacities: showCapacities
   size: size
   snapshotid: snapshotId
+  snapshotmemory: snapshotMemory
   snapshotpolicy: snapshotPolicy
   snapshotreservation: snapshotReservation
   snapshottype: snapshotType
   sortby: sortBy
   sortkey: sortKey
+  source: source
+  sourceipaddress: sourceIpAddress
   sourcenatsupported: sourceNatSupported
+  sourceport: sourcePort
   sourcezoneid: sourceZoneId
   specifyipranges: specifyIpRanges
   specifyvlan: specifyVlan
@@ -239,6 +297,7 @@ camel_case:
   ssl: ssl
   startdate: startDate
   startip: startIp
+  startipv6: startIpV6
   startport: startPort
   startvm: startVm
   state: state
@@ -251,12 +310,14 @@ camel_case:
   templatefilter: templateFilter
   templateid: templateId
   templatetag: templateTag
+  threshold: threshold
   timezone: timezone
   token: token
   traffictype: trafficType
   truststore: trustStore
   truststorepass: trustStorePass
   type: type
+  unhealthythreshold: unhealthyThreshold
   url: url
   userapikey: userApiKey
   userdata: userData
@@ -269,6 +330,10 @@ camel_case:
   virtualmachineids: virtualMachineIds
   vlan: vlan
   vlanid: vlanId
+  vmgroupid: vmGroupId
+  vmguestip: vmGuestIp
+  vmprofileid: vmProfileId
+  vmsnapshotid: vmSnapshotId
   vmwarenetworklabel: vmwareNetworkLabel
   volumeid: volumeId
   volumename: volumeName
