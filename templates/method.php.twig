@@ -21,7 +21,7 @@
 {% endfor %}) {
 
 {% for param in method.params %}{% if param.required == "true" %}
-        if (empty(${% if camelCase %}{{ param.nameCamelCase }}{% else %}{{ param.name }}{% endif %})) {
+        if (empty(${% if camelCase %}{{ param.nameCamelCase }}{% else %}{{ param.name }}{% endif %} && ${% if camelCase %}{{ param.nameCamelCase }}{% else %}{{ param.name }}{% endif %} != "0")) {
             throw new CloudStackClientException(sprintf(MISSING_ARGUMENT_MSG, "{% if camelCase %}{{ param.nameCamelCase }}{% else %}{{ param.name }}{% endif %}"), MISSING_ARGUMENT);
         }
 
