@@ -8,7 +8,7 @@
 #}
 {% autoescape false %}
 {% set camelCase = config.use_camel_case %}
-    /**
+   /**
     * {{ method.description | raw }}
     *
 {% for param in method.params %}
@@ -16,7 +16,6 @@
 {% endfilter %}
 {% endfor %}
     */
-    
     public function {{ method.name }}({% for param in method.params %}${% if camelCase %}{{ param.nameCamelCase }}{% else %}{{ param.name }}{% endif %}{% if param.required != "true" %} = ""{% endif %}{% if not loop.last %}, {% endif %}
 {% endfor %}) {
 
@@ -33,4 +32,3 @@
         ));
     }
 {% endautoescape %}
-    
