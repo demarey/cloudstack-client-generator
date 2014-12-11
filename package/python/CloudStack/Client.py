@@ -3,7 +3,405 @@ from BaseCloudStackClient import BaseCloudStackClient
 
 class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
 
-    def createRemoteAccessVpn(self, publicIpId, account = "", domainId = "", ipRange = "", openFirewall = ""):
+    def createLoadBalancerRule(self, algorithm, name, privatePort, publicPort, account = "", cidrList = "", description = "", domainId = "", forDisplay = "", networkId = "", openFirewall = "", protocol = "", publicIpId = "", zoneId = ""):
+        '''
+        Creates a load balancer rule
+        '''
+
+        return self.request("createLoadBalancerRule", {
+            'algorithm' : algorithm,
+            'name' : name,
+            'privateport' : privatePort,
+            'publicport' : publicPort,
+            'account' : account,
+            'cidrlist' : cidrList,
+            'description' : description,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'networkid' : networkId,
+            'openfirewall' : openFirewall,
+            'protocol' : protocol,
+            'publicipid' : publicIpId,
+            'zoneid' : zoneId,
+        })
+    
+    def deleteLoadBalancerRule(self, id):
+        '''
+        Deletes a load balancer rule.
+        '''
+
+        return self.request("deleteLoadBalancerRule", {
+            'id' : id,
+        })
+    
+    def removeFromLoadBalancerRule(self, id, virtualMachineIds = "", vmIdIpMap = ""):
+        '''
+        Removes a virtual machine or a list of virtual machines from a load balancer rule.
+        '''
+
+        return self.request("removeFromLoadBalancerRule", {
+            'id' : id,
+            'virtualmachineids' : virtualMachineIds,
+            'vmidipmap' : vmIdIpMap,
+        })
+    
+    def assignToLoadBalancerRule(self, id, virtualMachineIds = "", vmIdIpMap = ""):
+        '''
+        Assigns virtual machine or a list of virtual machines to a load balancer rule.
+        '''
+
+        return self.request("assignToLoadBalancerRule", {
+            'id' : id,
+            'virtualmachineids' : virtualMachineIds,
+            'vmidipmap' : vmIdIpMap,
+        })
+    
+    def createLBStickinessPolicy(self, lbruleId, methodName, name, description = "", forDisplay = "", param = ""):
+        '''
+        Creates a Load Balancer stickiness policy
+        '''
+
+        return self.request("createLBStickinessPolicy", {
+            'lbruleid' : lbruleId,
+            'methodname' : methodName,
+            'name' : name,
+            'description' : description,
+            'fordisplay' : forDisplay,
+            'param' : param,
+        })
+    
+    def updateLBStickinessPolicy(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates LB Stickiness policy
+        '''
+
+        return self.request("updateLBStickinessPolicy", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def deleteLBStickinessPolicy(self, id):
+        '''
+        Deletes a LB stickiness policy.
+        '''
+
+        return self.request("deleteLBStickinessPolicy", {
+            'id' : id,
+        })
+    
+    def listLoadBalancerRules(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", networkId = "", page = "", pageSize = "", projectId = "", publicIpId = "", tags = "", virtualMachineId = "", zoneId = ""):
+        '''
+        Lists load balancer rules.
+        '''
+
+        return self.request("listLoadBalancerRules", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'networkid' : networkId,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'publicipid' : publicIpId,
+            'tags' : tags,
+            'virtualmachineid' : virtualMachineId,
+            'zoneid' : zoneId,
+        })
+    
+    def listLBStickinessPolicies(self, forDisplay = "", id = "", keyword = "", lbruleId = "", page = "", pageSize = ""):
+        '''
+        Lists LBStickiness policies.
+        '''
+
+        return self.request("listLBStickinessPolicies", {
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'keyword' : keyword,
+            'lbruleid' : lbruleId,
+            'page' : page,
+            'pagesize' : pageSize,
+        })
+    
+    def listLBHealthCheckPolicies(self, forDisplay = "", id = "", keyword = "", lbruleId = "", page = "", pageSize = ""):
+        '''
+        Lists load balancer HealthCheck policies.
+        '''
+
+        return self.request("listLBHealthCheckPolicies", {
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'keyword' : keyword,
+            'lbruleid' : lbruleId,
+            'page' : page,
+            'pagesize' : pageSize,
+        })
+    
+    def createLBHealthCheckPolicy(self, lbruleId, description = "", forDisplay = "", healthyTreshold = "", intervalTime = "", pingPath = "", responseTimeout = "", unhealthyThreshold = ""):
+        '''
+        Creates a Load Balancer healthcheck policy
+        '''
+
+        return self.request("createLBHealthCheckPolicy", {
+            'lbruleid' : lbruleId,
+            'description' : description,
+            'fordisplay' : forDisplay,
+            'healthythreshold' : healthyTreshold,
+            'intervaltime' : intervalTime,
+            'pingpath' : pingPath,
+            'responsetimeout' : responseTimeout,
+            'unhealthythreshold' : unhealthyThreshold,
+        })
+    
+    def updateLBHealthCheckPolicy(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates LB HealthCheck policy
+        '''
+
+        return self.request("updateLBHealthCheckPolicy", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def deleteLBHealthCheckPolicy(self, id):
+        '''
+        Deletes a load balancer HealthCheck policy.
+        '''
+
+        return self.request("deleteLBHealthCheckPolicy", {
+            'id' : id,
+        })
+    
+    def listLoadBalancerRuleInstances(self, id, applied = "", keyword = "", lbVmIps = "", page = "", pageSize = ""):
+        '''
+        List all virtual machine instances that are assigned to a load balancer rule.
+        '''
+
+        return self.request("listLoadBalancerRuleInstances", {
+            'id' : id,
+            'applied' : applied,
+            'keyword' : keyword,
+            'lbvmips' : lbVmIps,
+            'page' : page,
+            'pagesize' : pageSize,
+        })
+    
+    def updateLoadBalancerRule(self, id, algorithm = "", customId = "", description = "", forDisplay = "", name = ""):
+        '''
+        Updates load balancer
+        '''
+
+        return self.request("updateLoadBalancerRule", {
+            'id' : id,
+            'algorithm' : algorithm,
+            'customid' : customId,
+            'description' : description,
+            'fordisplay' : forDisplay,
+            'name' : name,
+        })
+    
+    def uploadSslCert(self, certificate, privateKey, account = "", certChain = "", domainId = "", password = "", projectId = ""):
+        '''
+        Upload a certificate to cloudstack
+        '''
+
+        return self.request("uploadSslCert", {
+            'certificate' : certificate,
+            'privatekey' : privateKey,
+            'account' : account,
+            'certchain' : certChain,
+            'domainid' : domainId,
+            'password' : password,
+            'projectid' : projectId,
+        })
+    
+    def deleteSslCert(self, id):
+        '''
+        Delete a certificate to cloudstack
+        '''
+
+        return self.request("deleteSslCert", {
+            'id' : id,
+        })
+    
+    def listSslCerts(self, accountId = "", certId = "", lbruleId = "", projectId = ""):
+        '''
+        Lists SSL certificates
+        '''
+
+        return self.request("listSslCerts", {
+            'accountid' : accountId,
+            'certid' : certId,
+            'lbruleid' : lbruleId,
+            'projectid' : projectId,
+        })
+    
+    def assignCertToLoadBalancer(self, certId, lbruleId):
+        '''
+        Assigns a certificate to a Load Balancer Rule
+        '''
+
+        return self.request("assignCertToLoadBalancer", {
+            'certid' : certId,
+            'lbruleid' : lbruleId,
+        })
+    
+    def removeCertFromLoadBalancer(self, lbruleId):
+        '''
+        Removes a certificate from a Load Balancer Rule
+        '''
+
+        return self.request("removeCertFromLoadBalancer", {
+            'lbruleid' : lbruleId,
+        })
+    
+    def createGlobalLoadBalancerRule(self, gslbDomainName, gslbServiceType, name, regionId, account = "", description = "", domainId = "", gslblbMethod = "", gslbStickySessionMethodName = ""):
+        '''
+        Creates a global load balancer rule
+        '''
+
+        return self.request("createGlobalLoadBalancerRule", {
+            'gslbdomainname' : gslbDomainName,
+            'gslbservicetype' : gslbServiceType,
+            'name' : name,
+            'regionid' : regionId,
+            'account' : account,
+            'description' : description,
+            'domainid' : domainId,
+            'gslblbmethod' : gslblbMethod,
+            'gslbstickysessionmethodname' : gslbStickySessionMethodName,
+        })
+    
+    def deleteGlobalLoadBalancerRule(self, id):
+        '''
+        Deletes a global load balancer rule.
+        '''
+
+        return self.request("deleteGlobalLoadBalancerRule", {
+            'id' : id,
+        })
+    
+    def updateGlobalLoadBalancerRule(self, id, description = "", gslblbMethod = "", gslbStickySessionMethodName = ""):
+        '''
+        update global load balancer rules.
+        '''
+
+        return self.request("updateGlobalLoadBalancerRule", {
+            'id' : id,
+            'description' : description,
+            'gslblbmethod' : gslblbMethod,
+            'gslbstickysessionmethodname' : gslbStickySessionMethodName,
+        })
+    
+    def listGlobalLoadBalancerRules(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", regionId = "", tags = ""):
+        '''
+        Lists load balancer rules.
+        '''
+
+        return self.request("listGlobalLoadBalancerRules", {
+            'account' : account,
+            'domainid' : domainId,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'regionid' : regionId,
+            'tags' : tags,
+        })
+    
+    def assignToGlobalLoadBalancerRule(self, id, loadBalancerRuleList, gslblbRuleWeightsMap = ""):
+        '''
+        Assign load balancer rule or list of load balancer rules to a global load balancer rules.
+        '''
+
+        return self.request("assignToGlobalLoadBalancerRule", {
+            'id' : id,
+            'loadbalancerrulelist' : loadBalancerRuleList,
+            'gslblbruleweightsmap' : gslblbRuleWeightsMap,
+        })
+    
+    def removeFromGlobalLoadBalancerRule(self, id, loadBalancerRuleList):
+        '''
+        Removes a load balancer rule association with global load balancer rule
+        '''
+
+        return self.request("removeFromGlobalLoadBalancerRule", {
+            'id' : id,
+            'loadbalancerrulelist' : loadBalancerRuleList,
+        })
+    
+    def createLoadBalancer(self, algorithm, instancePort, name, networkId, scheme, sourceIpAddressNetworkId, sourcePort, description = "", forDisplay = "", sourceIpAddress = ""):
+        '''
+        Creates a Load Balancer
+        '''
+
+        return self.request("createLoadBalancer", {
+            'algorithm' : algorithm,
+            'instanceport' : instancePort,
+            'name' : name,
+            'networkid' : networkId,
+            'scheme' : scheme,
+            'sourceipaddressnetworkid' : sourceIpAddressNetworkId,
+            'sourceport' : sourcePort,
+            'description' : description,
+            'fordisplay' : forDisplay,
+            'sourceipaddress' : sourceIpAddress,
+        })
+    
+    def listLoadBalancers(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", networkId = "", page = "", pageSize = "", projectId = "", scheme = "", sourceIpAddress = "", sourceIpAddressNetworkId = "", tags = ""):
+        '''
+        Lists Load Balancers
+        '''
+
+        return self.request("listLoadBalancers", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'networkid' : networkId,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'scheme' : scheme,
+            'sourceipaddress' : sourceIpAddress,
+            'sourceipaddressnetworkid' : sourceIpAddressNetworkId,
+            'tags' : tags,
+        })
+    
+    def deleteLoadBalancer(self, id):
+        '''
+        Deletes a load balancer
+        '''
+
+        return self.request("deleteLoadBalancer", {
+            'id' : id,
+        })
+    
+    def updateLoadBalancer(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates a Load Balancer
+        '''
+
+        return self.request("updateLoadBalancer", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def createRemoteAccessVpn(self, publicIpId, account = "", domainId = "", forDisplay = "", ipRange = "", openFirewall = ""):
         '''
         Creates a l2tp/ipsec remote access vpn
         '''
@@ -12,6 +410,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'publicipid' : publicIpId,
             'account' : account,
             'domainid' : domainId,
+            'fordisplay' : forDisplay,
             'iprange' : ipRange,
             'openfirewall' : openFirewall,
         })
@@ -25,21 +424,78 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'publicipid' : publicIpId,
         })
     
-    def listRemoteAccessVpns(self, publicIpId, account = "", domainId = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = ""):
+    def listRemoteAccessVpns(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", networkId = "", page = "", pageSize = "", projectId = "", publicIpId = ""):
         '''
         Lists remote access vpns
         '''
 
         return self.request("listRemoteAccessVpns", {
-            'publicipid' : publicIpId,
             'account' : account,
             'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'networkid' : networkId,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'publicipid' : publicIpId,
+        })
+    
+    def updateRemoteAccessVpn(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates remote access vpn
+        '''
+
+        return self.request("updateRemoteAccessVpn", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def addVpnUser(self, password, userName, account = "", domainId = "", projectId = ""):
+        '''
+        Adds vpn users
+        '''
+
+        return self.request("addVpnUser", {
+            'password' : password,
+            'username' : userName,
+            'account' : account,
+            'domainid' : domainId,
+            'projectid' : projectId,
+        })
+    
+    def removeVpnUser(self, userName, account = "", domainId = "", projectId = ""):
+        '''
+        Removes vpn user
+        '''
+
+        return self.request("removeVpnUser", {
+            'username' : userName,
+            'account' : account,
+            'domainid' : domainId,
+            'projectid' : projectId,
+        })
+    
+    def listVpnUsers(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", userName = ""):
+        '''
+        Lists vpn users
+        '''
+
+        return self.request("listVpnUsers", {
+            'account' : account,
+            'domainid' : domainId,
+            'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
             'listall' : listAll,
             'page' : page,
             'pagesize' : pageSize,
             'projectid' : projectId,
+            'username' : userName,
         })
     
     def createVpnCustomerGateway(self, cidrList, espPolicy, gateway, ikePolicy, ipsecPsk, account = "", domainId = "", dpd = "", espLifeTime = "", ikeLifeTime = "", name = ""):
@@ -61,16 +517,17 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'name' : name,
         })
     
-    def createVpnGateway(self, vpcId):
+    def createVpnGateway(self, vpcId, forDisplay = ""):
         '''
         Creates site to site vpn local gateway
         '''
 
         return self.request("createVpnGateway", {
             'vpcid' : vpcId,
+            'fordisplay' : forDisplay,
         })
     
-    def createVpnConnection(self, s2sCustomerGatewayId, s2sVpnGatewayId):
+    def createVpnConnection(self, s2sCustomerGatewayId, s2sVpnGatewayId, forDisplay = "", passive = ""):
         '''
         Create site to site vpn connection
         '''
@@ -78,6 +535,8 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
         return self.request("createVpnConnection", {
             's2scustomergatewayid' : s2sCustomerGatewayId,
             's2svpngatewayid' : s2sVpnGatewayId,
+            'fordisplay' : forDisplay,
+            'passive' : passive,
         })
     
     def deleteVpnCustomerGateway(self, id):
@@ -155,7 +614,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'projectid' : projectId,
         })
     
-    def listVpnGateways(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", vpcId = ""):
+    def listVpnGateways(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", vpcId = ""):
         '''
         Lists site 2 site vpn gateways
         '''
@@ -163,6 +622,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
         return self.request("listVpnGateways", {
             'account' : account,
             'domainid' : domainId,
+            'fordisplay' : forDisplay,
             'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
@@ -173,7 +633,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'vpcid' : vpcId,
         })
     
-    def listVpnConnections(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", vpcId = ""):
+    def listVpnConnections(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", vpcId = ""):
         '''
         Lists site to site vpn connection gateways
         '''
@@ -181,6 +641,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
         return self.request("listVpnConnections", {
             'account' : account,
             'domainid' : domainId,
+            'fordisplay' : forDisplay,
             'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
@@ -191,7 +652,29 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'vpcid' : vpcId,
         })
     
-    def deployVirtualMachine(self, serviceOfferingId, templateId, zoneId, account = "", diskOfferingId = "", displayName = "", domainId = "", group = "", hostId = "", hypervisor = "", ipAddress = "", ipToNetWorkList = "", keyboard = "", keyPair = "", name = "", networkIds = "", projectId = "", securityGroupIds = "", securityGroupNames = "", size = "", startVm = "", userData = ""):
+    def updateVpnConnection(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates site to site vpn connection
+        '''
+
+        return self.request("updateVpnConnection", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def updateVpnGateway(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates site to site vpn local gateway
+        '''
+
+        return self.request("updateVpnGateway", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def deployVirtualMachine(self, serviceOfferingId, templateId, zoneId, account = "", affinityGroupIds = "", affinityGroupNames = "", customId = "", deploymentPlanner = "", details = "", diskOfferingId = "", displayName = "", displayVm = "", domainId = "", group = "", hostId = "", hypervisor = "", ip6Address = "", ipAddress = "", ipToNetWorkList = "", keyboard = "", keyPair = "", name = "", networkIds = "", projectId = "", rootDiskSize = "", securityGroupIds = "", securityGroupNames = "", size = "", startVm = "", userData = ""):
         '''
         Creates and automatically starts a virtual machine based on a service offering, disk offering, and template.
         '''
@@ -201,12 +684,19 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'templateid' : templateId,
             'zoneid' : zoneId,
             'account' : account,
+            'affinitygroupids' : affinityGroupIds,
+            'affinitygroupnames' : affinityGroupNames,
+            'customid' : customId,
+            'deploymentplanner' : deploymentPlanner,
+            'details' : details,
             'diskofferingid' : diskOfferingId,
             'displayname' : displayName,
+            'displayvm' : displayVm,
             'domainid' : domainId,
             'group' : group,
             'hostid' : hostId,
             'hypervisor' : hypervisor,
+            'ip6address' : ip6Address,
             'ipaddress' : ipAddress,
             'iptonetworklist' : ipToNetWorkList,
             'keyboard' : keyboard,
@@ -214,6 +704,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'name' : name,
             'networkids' : networkIds,
             'projectid' : projectId,
+            'rootdisksize' : rootDiskSize,
             'securitygroupids' : securityGroupIds,
             'securitygroupnames' : securityGroupNames,
             'size' : size,
@@ -221,13 +712,14 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'userdata' : userData,
         })
     
-    def destroyVirtualMachine(self, id):
+    def destroyVirtualMachine(self, id, expunge = ""):
         '''
         Destroys a virtual machine. Once destroyed, only the administrator can recover it.
         '''
 
         return self.request("destroyVirtualMachine", {
             'id' : id,
+            'expunge' : expunge,
         })
     
     def rebootVirtualMachine(self, id):
@@ -239,13 +731,14 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'id' : id,
         })
     
-    def startVirtualMachine(self, id, hostId = ""):
+    def startVirtualMachine(self, id, deploymentPlanner = "", hostId = ""):
         '''
         Starts a virtual machine.
         '''
 
         return self.request("startVirtualMachine", {
             'id' : id,
+            'deploymentplanner' : deploymentPlanner,
             'hostid' : hostId,
         })
     
@@ -268,53 +761,41 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'id' : id,
         })
     
-    def changeServiceForVirtualMachine(self, id, serviceOfferingId):
-        '''
-        Changes the service offering for a virtual machine. The virtual machine must be in a "Stopped" state for this command to take effect.
-        '''
-
-        return self.request("changeServiceForVirtualMachine", {
-            'id' : id,
-            'serviceofferingid' : serviceOfferingId,
-        })
-    
-    def updateVirtualMachine(self, id, displayName = "", group = "", haEnable = "", osTypeId = "", userData = ""):
+    def updateVirtualMachine(self, id, customId = "", displayName = "", displayVm = "", group = "", haEnable = "", isDynamicallyScalable = "", name = "", osTypeId = "", userData = ""):
         '''
         Updates properties of a virtual machine. The VM has to be stopped and restarted for the new properties to take effect. UpdateVirtualMachine does not first check whether the VM is stopped. Therefore, stop the VM manually before issuing this call.
         '''
 
         return self.request("updateVirtualMachine", {
             'id' : id,
+            'customid' : customId,
             'displayname' : displayName,
+            'displayvm' : displayVm,
             'group' : group,
             'haenable' : haEnable,
+            'isdynamicallyscalable' : isDynamicallyScalable,
+            'name' : name,
             'ostypeid' : osTypeId,
             'userdata' : userData,
         })
     
-    def recoverVirtualMachine(self, id):
-        '''
-        Recovers a virtual machine.
-        '''
-
-        return self.request("recoverVirtualMachine", {
-            'id' : id,
-        })
-    
-    def listVirtualMachines(self, account = "", details = "", domainId = "", forVirtualNetwork = "", groupId = "", hostId = "", hypervisor = "", id = "", isoId = "", isRecursive = "", keyword = "", listAll = "", name = "", networkId = "", page = "", pageSize = "", podId = "", projectId = "", state = "", storageId = "", tags = "", templateId = "", vpcId = "", zoneId = ""):
+    def listVirtualMachines(self, account = "", affinityGroupId = "", details = "", displayVm = "", domainId = "", forVirtualNetwork = "", groupId = "", hostId = "", hypervisor = "", id = "", ids = "", isoId = "", isRecursive = "", keyword = "", listAll = "", name = "", networkId = "", page = "", pageSize = "", podId = "", projectId = "", serviceOfferingId = "", state = "", storageId = "", tags = "", templateId = "", vpcId = "", zoneId = ""):
         '''
         List the virtual machines owned by the account.
         '''
 
         return self.request("listVirtualMachines", {
             'account' : account,
+            'affinitygroupid' : affinityGroupId,
             'details' : details,
+            'displayvm' : displayVm,
             'domainid' : domainId,
             'forvirtualnetwork' : forVirtualNetwork,
             'groupid' : groupId,
             'hostid' : hostId,
             'hypervisor' : hypervisor,
             'id' : id,
+            'ids' : ids,
             'isoid' : isoId,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
@@ -325,6 +806,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'pagesize' : pageSize,
             'podid' : podId,
             'projectid' : projectId,
+            'serviceofferingid' : serviceOfferingId,
             'state' : state,
             'storageid' : storageId,
             'tags' : tags,
@@ -342,16 +824,688 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'id' : id,
         })
     
-    def restoreVirtualMachine(self, virtualMachineId):
+    def restoreVirtualMachine(self, virtualMachineId, templateId = ""):
         '''
-        Restore a VM to original template or specific snapshot
+        Restore a VM to original template/ISO or new template/ISO
         '''
 
         return self.request("restoreVirtualMachine", {
             'virtualmachineid' : virtualMachineId,
+            'templateid' : templateId,
         })
     
-    def createVPC(self, cidr, displayText, name, vpcOfferingId, zoneId, account = "", domainId = "", networkDomain = "", projectId = ""):
+    def changeServiceForVirtualMachine(self, id, serviceOfferingId, details = ""):
+        '''
+        Changes the service offering for a virtual machine. The virtual machine must be in a "Stopped" state for this command to take effect.
+        '''
+
+        return self.request("changeServiceForVirtualMachine", {
+            'id' : id,
+            'serviceofferingid' : serviceOfferingId,
+            'details' : details,
+        })
+    
+    def scaleVirtualMachine(self, id, serviceOfferingId, details = ""):
+        '''
+        Scales the virtual machine to a new service offering.
+        '''
+
+        return self.request("scaleVirtualMachine", {
+            'id' : id,
+            'serviceofferingid' : serviceOfferingId,
+            'details' : details,
+        })
+    
+    def assignVirtualMachine(self, account, domainId, virtualMachineId, networkIds = "", securityGroupIds = ""):
+        '''
+        Change ownership of a VM from one account to another. This API is available for Basic zones with security groups and Advanced zones with guest networks. A root administrator can reassign a VM from any account to any other account in any domain. A domain administrator can reassign a VM to any account in the same domain.
+        '''
+
+        return self.request("assignVirtualMachine", {
+            'account' : account,
+            'domainid' : domainId,
+            'virtualmachineid' : virtualMachineId,
+            'networkids' : networkIds,
+            'securitygroupids' : securityGroupIds,
+        })
+    
+    def recoverVirtualMachine(self, id):
+        '''
+        Recovers a virtual machine.
+        '''
+
+        return self.request("recoverVirtualMachine", {
+            'id' : id,
+        })
+    
+    def expungeVirtualMachine(self, id):
+        '''
+        Expunge a virtual machine. Once expunged, it cannot be recoverd.
+        '''
+
+        return self.request("expungeVirtualMachine", {
+            'id' : id,
+        })
+    
+    def addNicToVirtualMachine(self, networkId, virtualMachineId, ipAddress = ""):
+        '''
+        Adds VM to specified network by creating a NIC
+        '''
+
+        return self.request("addNicToVirtualMachine", {
+            'networkid' : networkId,
+            'virtualmachineid' : virtualMachineId,
+            'ipaddress' : ipAddress,
+        })
+    
+    def removeNicFromVirtualMachine(self, nicId, virtualMachineId):
+        '''
+        Removes VM from specified network by deleting a NIC
+        '''
+
+        return self.request("removeNicFromVirtualMachine", {
+            'nicid' : nicId,
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def updateDefaultNicForVirtualMachine(self, nicId, virtualMachineId):
+        '''
+        Changes the default NIC on a VM
+        '''
+
+        return self.request("updateDefaultNicForVirtualMachine", {
+            'nicid' : nicId,
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def createCondition(self, counterId, relationalOperator, threshold, account = "", domainId = ""):
+        '''
+        Creates a condition
+        '''
+
+        return self.request("createCondition", {
+            'counterid' : counterId,
+            'relationaloperator' : relationalOperator,
+            'threshold' : threshold,
+            'account' : account,
+            'domainid' : domainId,
+        })
+    
+    def createAutoScalePolicy(self, action, conditionIds, duration, quietTime = ""):
+        '''
+        Creates an autoscale policy for a provision or deprovision action, the action is taken when the all the conditions evaluates to true for the specified duration. The policy is in effect once it is attached to a autscale vm group.
+        '''
+
+        return self.request("createAutoScalePolicy", {
+            'action' : action,
+            'conditionids' : conditionIds,
+            'duration' : duration,
+            'quiettime' : quietTime,
+        })
+    
+    def createAutoScaleVmProfile(self, serviceOfferingId, templateId, zoneId, autoscaleUserId = "", counterParam = "", destroyVmGracePeriod = "", forDisplay = "", otherDeployParams = ""):
+        '''
+        Creates a profile that contains information about the virtual machine which will be provisioned automatically by autoscale feature.
+        '''
+
+        return self.request("createAutoScaleVmProfile", {
+            'serviceofferingid' : serviceOfferingId,
+            'templateid' : templateId,
+            'zoneid' : zoneId,
+            'autoscaleuserid' : autoscaleUserId,
+            'counterparam' : counterParam,
+            'destroyvmgraceperiod' : destroyVmGracePeriod,
+            'fordisplay' : forDisplay,
+            'otherdeployparams' : otherDeployParams,
+        })
+    
+    def createAutoScaleVmGroup(self, lbruleId, maxMembers, minMembers, scaleDownPolicyIds, scaleUpPolicyIds, vmProfileId, forDisplay = "", interval = ""):
+        '''
+        Creates and automatically starts a virtual machine based on a service offering, disk offering, and template.
+        '''
+
+        return self.request("createAutoScaleVmGroup", {
+            'lbruleid' : lbruleId,
+            'maxmembers' : maxMembers,
+            'minmembers' : minMembers,
+            'scaledownpolicyids' : scaleDownPolicyIds,
+            'scaleuppolicyids' : scaleUpPolicyIds,
+            'vmprofileid' : vmProfileId,
+            'fordisplay' : forDisplay,
+            'interval' : interval,
+        })
+    
+    def deleteCondition(self, id):
+        '''
+        Removes a condition
+        '''
+
+        return self.request("deleteCondition", {
+            'id' : id,
+        })
+    
+    def deleteAutoScalePolicy(self, id):
+        '''
+        Deletes a autoscale policy.
+        '''
+
+        return self.request("deleteAutoScalePolicy", {
+            'id' : id,
+        })
+    
+    def deleteAutoScaleVmProfile(self, id):
+        '''
+        Deletes a autoscale vm profile.
+        '''
+
+        return self.request("deleteAutoScaleVmProfile", {
+            'id' : id,
+        })
+    
+    def deleteAutoScaleVmGroup(self, id):
+        '''
+        Deletes a autoscale vm group.
+        '''
+
+        return self.request("deleteAutoScaleVmGroup", {
+            'id' : id,
+        })
+    
+    def listCounters(self, id = "", keyword = "", name = "", page = "", pageSize = "", source = ""):
+        '''
+        List the counters
+        '''
+
+        return self.request("listCounters", {
+            'id' : id,
+            'keyword' : keyword,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+            'source' : source,
+        })
+    
+    def listConditions(self, account = "", counterId = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", policyId = ""):
+        '''
+        List Conditions for the specific user
+        '''
+
+        return self.request("listConditions", {
+            'account' : account,
+            'counterid' : counterId,
+            'domainid' : domainId,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'policyid' : policyId,
+        })
+    
+    def listAutoScalePolicies(self, account = "", action = "", conditionId = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", vmGroupId = ""):
+        '''
+        Lists autoscale policies.
+        '''
+
+        return self.request("listAutoScalePolicies", {
+            'account' : account,
+            'action' : action,
+            'conditionid' : conditionId,
+            'domainid' : domainId,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'vmgroupid' : vmGroupId,
+        })
+    
+    def listAutoScaleVmProfiles(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", otherDeployParams = "", page = "", pageSize = "", projectId = "", serviceOfferingId = "", templateId = "", zoneId = ""):
+        '''
+        Lists autoscale vm profiles.
+        '''
+
+        return self.request("listAutoScaleVmProfiles", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'otherdeployparams' : otherDeployParams,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'serviceofferingid' : serviceOfferingId,
+            'templateid' : templateId,
+            'zoneid' : zoneId,
+        })
+    
+    def listAutoScaleVmGroups(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", lbruleId = "", listAll = "", page = "", pageSize = "", policyId = "", projectId = "", vmProfileId = "", zoneId = ""):
+        '''
+        Lists autoscale vm groups.
+        '''
+
+        return self.request("listAutoScaleVmGroups", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'lbruleid' : lbruleId,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'policyid' : policyId,
+            'projectid' : projectId,
+            'vmprofileid' : vmProfileId,
+            'zoneid' : zoneId,
+        })
+    
+    def enableAutoScaleVmGroup(self, id):
+        '''
+        Enables an AutoScale Vm Group
+        '''
+
+        return self.request("enableAutoScaleVmGroup", {
+            'id' : id,
+        })
+    
+    def disableAutoScaleVmGroup(self, id):
+        '''
+        Disables an AutoScale Vm Group
+        '''
+
+        return self.request("disableAutoScaleVmGroup", {
+            'id' : id,
+        })
+    
+    def updateAutoScalePolicy(self, id, conditionIds = "", duration = "", quietTime = ""):
+        '''
+        Updates an existing autoscale policy.
+        '''
+
+        return self.request("updateAutoScalePolicy", {
+            'id' : id,
+            'conditionids' : conditionIds,
+            'duration' : duration,
+            'quiettime' : quietTime,
+        })
+    
+    def updateAutoScaleVmProfile(self, id, autoscaleUserId = "", counterParam = "", customId = "", destroyVmGracePeriod = "", forDisplay = "", templateId = ""):
+        '''
+        Updates an existing autoscale vm profile.
+        '''
+
+        return self.request("updateAutoScaleVmProfile", {
+            'id' : id,
+            'autoscaleuserid' : autoscaleUserId,
+            'counterparam' : counterParam,
+            'customid' : customId,
+            'destroyvmgraceperiod' : destroyVmGracePeriod,
+            'fordisplay' : forDisplay,
+            'templateid' : templateId,
+        })
+    
+    def updateAutoScaleVmGroup(self, id, customId = "", forDisplay = "", interval = "", maxMembers = "", minMembers = "", scaleDownPolicyIds = "", scaleUpPolicyIds = ""):
+        '''
+        Updates an existing autoscale vm group.
+        '''
+
+        return self.request("updateAutoScaleVmGroup", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+            'interval' : interval,
+            'maxmembers' : maxMembers,
+            'minmembers' : minMembers,
+            'scaledownpolicyids' : scaleDownPolicyIds,
+            'scaleuppolicyids' : scaleUpPolicyIds,
+        })
+    
+    def createSnapshot(self, volumeId, account = "", domainId = "", policyId = "", quiesceVm = ""):
+        '''
+        Creates an instant snapshot of a volume.
+        '''
+
+        return self.request("createSnapshot", {
+            'volumeid' : volumeId,
+            'account' : account,
+            'domainid' : domainId,
+            'policyid' : policyId,
+            'quiescevm' : quiesceVm,
+        })
+    
+    def listSnapshots(self, account = "", domainId = "", id = "", intervalType = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", snapshotType = "", tags = "", volumeId = "", zoneId = ""):
+        '''
+        Lists all available snapshots for the account.
+        '''
+
+        return self.request("listSnapshots", {
+            'account' : account,
+            'domainid' : domainId,
+            'id' : id,
+            'intervaltype' : intervalType,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'snapshottype' : snapshotType,
+            'tags' : tags,
+            'volumeid' : volumeId,
+            'zoneid' : zoneId,
+        })
+    
+    def deleteSnapshot(self, id):
+        '''
+        Deletes a snapshot of a disk volume.
+        '''
+
+        return self.request("deleteSnapshot", {
+            'id' : id,
+        })
+    
+    def createSnapshotPolicy(self, intervalType, maxSnaps, schedule, timezone, volumeId, forDisplay = ""):
+        '''
+        Creates a snapshot policy for the account.
+        '''
+
+        return self.request("createSnapshotPolicy", {
+            'intervaltype' : intervalType,
+            'maxsnaps' : maxSnaps,
+            'schedule' : schedule,
+            'timezone' : timezone,
+            'volumeid' : volumeId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def updateSnapshotPolicy(self, customId = "", forDisplay = "", id = ""):
+        '''
+        Updates the snapshot policy.
+        '''
+
+        return self.request("updateSnapshotPolicy", {
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+        })
+    
+    def deleteSnapshotPolicies(self, id = "", ids = ""):
+        '''
+        Deletes snapshot policies for the account.
+        '''
+
+        return self.request("deleteSnapshotPolicies", {
+            'id' : id,
+            'ids' : ids,
+        })
+    
+    def listSnapshotPolicies(self, forDisplay = "", id = "", keyword = "", page = "", pageSize = "", volumeId = ""):
+        '''
+        Lists snapshot policies.
+        '''
+
+        return self.request("listSnapshotPolicies", {
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'keyword' : keyword,
+            'page' : page,
+            'pagesize' : pageSize,
+            'volumeid' : volumeId,
+        })
+    
+    def revertSnapshot(self, id):
+        '''
+        revert a volume snapshot.
+        '''
+
+        return self.request("revertSnapshot", {
+            'id' : id,
+        })
+    
+    def listVMSnapshot(self, account = "", domainId = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", state = "", tags = "", virtualMachineId = "", vmSnapshotId = ""):
+        '''
+        List virtual machine snapshot by conditions
+        '''
+
+        return self.request("listVMSnapshot", {
+            'account' : account,
+            'domainid' : domainId,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'state' : state,
+            'tags' : tags,
+            'virtualmachineid' : virtualMachineId,
+            'vmsnapshotid' : vmSnapshotId,
+        })
+    
+    def createVMSnapshot(self, virtualMachineId, description = "", name = "", quiesceVm = "", snapshotMemory = ""):
+        '''
+        Creates snapshot for a vm.
+        '''
+
+        return self.request("createVMSnapshot", {
+            'virtualmachineid' : virtualMachineId,
+            'description' : description,
+            'name' : name,
+            'quiescevm' : quiesceVm,
+            'snapshotmemory' : snapshotMemory,
+        })
+    
+    def deleteVMSnapshot(self, vmSnapshotId):
+        '''
+        Deletes a vmsnapshot.
+        '''
+
+        return self.request("deleteVMSnapshot", {
+            'vmsnapshotid' : vmSnapshotId,
+        })
+    
+    def revertToVMSnapshot(self, vmSnapshotId):
+        '''
+        Revert VM from a vmsnapshot.
+        '''
+
+        return self.request("revertToVMSnapshot", {
+            'vmsnapshotid' : vmSnapshotId,
+        })
+    
+    def listPortForwardingRules(self, account = "", domainId = "", forDisplay = "", id = "", ipAddressId = "", isRecursive = "", keyword = "", listAll = "", networkId = "", page = "", pageSize = "", projectId = "", tags = ""):
+        '''
+        Lists all port forwarding rules for an IP address.
+        '''
+
+        return self.request("listPortForwardingRules", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'ipaddressid' : ipAddressId,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'networkid' : networkId,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'tags' : tags,
+        })
+    
+    def createPortForwardingRule(self, ipAddressId, privatePort, protocol, publicPort, virtualMachineId, cidrList = "", forDisplay = "", networkId = "", openFirewall = "", privateEndPort = "", publicEndPort = "", vmGuestIp = ""):
+        '''
+        Creates a port forwarding rule
+        '''
+
+        return self.request("createPortForwardingRule", {
+            'ipaddressid' : ipAddressId,
+            'privateport' : privatePort,
+            'protocol' : protocol,
+            'publicport' : publicPort,
+            'virtualmachineid' : virtualMachineId,
+            'cidrlist' : cidrList,
+            'fordisplay' : forDisplay,
+            'networkid' : networkId,
+            'openfirewall' : openFirewall,
+            'privateendport' : privateEndPort,
+            'publicendport' : publicEndPort,
+            'vmguestip' : vmGuestIp,
+        })
+    
+    def deletePortForwardingRule(self, id):
+        '''
+        Deletes a port forwarding rule
+        '''
+
+        return self.request("deletePortForwardingRule", {
+            'id' : id,
+        })
+    
+    def updatePortForwardingRule(self, id, customId = "", forDisplay = "", ipAddressId = "", privateIp = "", privatePort = "", protocol = "", publicPort = "", virtualMachineId = ""):
+        '''
+        Updates a port forwarding rule.  Only the private port and the virtual machine can be updated.
+        '''
+
+        return self.request("updatePortForwardingRule", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+            'ipaddressid' : ipAddressId,
+            'privateip' : privateIp,
+            'privateport' : privatePort,
+            'protocol' : protocol,
+            'publicport' : publicPort,
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def createFirewallRule(self, ipAddressId, protocol, cidrList = "", endPort = "", forDisplay = "", icmpCode = "", icmpType = "", startPort = "", type = ""):
+        '''
+        Creates a firewall rule for a given ip address
+        '''
+
+        return self.request("createFirewallRule", {
+            'ipaddressid' : ipAddressId,
+            'protocol' : protocol,
+            'cidrlist' : cidrList,
+            'endport' : endPort,
+            'fordisplay' : forDisplay,
+            'icmpcode' : icmpCode,
+            'icmptype' : icmpType,
+            'startport' : startPort,
+            'type' : type,
+        })
+    
+    def deleteFirewallRule(self, id):
+        '''
+        Deletes a firewall rule
+        '''
+
+        return self.request("deleteFirewallRule", {
+            'id' : id,
+        })
+    
+    def listFirewallRules(self, account = "", domainId = "", forDisplay = "", id = "", ipAddressId = "", isRecursive = "", keyword = "", listAll = "", networkId = "", page = "", pageSize = "", projectId = "", tags = ""):
+        '''
+        Lists all firewall rules for an IP address.
+        '''
+
+        return self.request("listFirewallRules", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'ipaddressid' : ipAddressId,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'networkid' : networkId,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'tags' : tags,
+        })
+    
+    def updateFirewallRule(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates firewall rule
+        '''
+
+        return self.request("updateFirewallRule", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def createEgressFirewallRule(self, networkId, protocol, cidrList = "", endPort = "", forDisplay = "", icmpCode = "", icmpType = "", startPort = "", type = ""):
+        '''
+        Creates a egress firewall rule for a given network
+        '''
+
+        return self.request("createEgressFirewallRule", {
+            'networkid' : networkId,
+            'protocol' : protocol,
+            'cidrlist' : cidrList,
+            'endport' : endPort,
+            'fordisplay' : forDisplay,
+            'icmpcode' : icmpCode,
+            'icmptype' : icmpType,
+            'startport' : startPort,
+            'type' : type,
+        })
+    
+    def deleteEgressFirewallRule(self, id):
+        '''
+        Deletes an ggress firewall rule
+        '''
+
+        return self.request("deleteEgressFirewallRule", {
+            'id' : id,
+        })
+    
+    def listEgressFirewallRules(self, account = "", domainId = "", forDisplay = "", id = "", ipAddressId = "", isRecursive = "", keyword = "", listAll = "", networkId = "", page = "", pageSize = "", projectId = "", tags = ""):
+        '''
+        Lists all egress firewall rules for network id.
+        '''
+
+        return self.request("listEgressFirewallRules", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'id' : id,
+            'ipaddressid' : ipAddressId,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'networkid' : networkId,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'tags' : tags,
+        })
+    
+    def updateEgressFirewallRule(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates egress firewall rule
+        '''
+
+        return self.request("updateEgressFirewallRule", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
+        })
+    
+    def createVPC(self, cidr, displayText, name, vpcOfferingId, zoneId, account = "", domainId = "", forDisplay = "", networkDomain = "", projectId = "", start = ""):
         '''
         Creates a VPC
         '''
@@ -364,22 +1518,23 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'zoneid' : zoneId,
             'account' : account,
             'domainid' : domainId,
+            'fordisplay' : forDisplay,
             'networkdomain' : networkDomain,
             'projectid' : projectId,
+            'start' : start,
         })
     
-    def listVPCs(self, account = "", account = "", cidr = "", displayText = "", domainId = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", restartRequired = "", state = "", supportedServices = "", tags = "", vpcOfferingId = "", zoneId = ""):
+    def listVPCs(self, account = "", cidr = "", displayText = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", restartRequired = "", state = "", supportedServices = "", tags = "", vpcOfferingId = "", zoneId = ""):
         '''
         Lists VPCs
         '''
 
         return self.request("listVPCs", {
             'account' : account,
-            'account' : account,
             'cidr' : cidr,
             'displaytext' : displayText,
             'domainid' : domainId,
-            'domainid' : domainId,
+            'fordisplay' : forDisplay,
             'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
@@ -405,18 +1560,20 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'id' : id,
         })
     
-    def updateVPC(self, displayText = "", id = "", name = ""):
+    def updateVPC(self, id, customId = "", displayText = "", forDisplay = "", name = ""):
         '''
         Updates a VPC
         '''
 
         return self.request("updateVPC", {
-            'displaytext' : displayText,
             'id' : id,
+            'customid' : customId,
+            'displaytext' : displayText,
+            'fordisplay' : forDisplay,
             'name' : name,
         })
     
-    def restartVPC(self, id = ""):
+    def restartVPC(self, id):
         '''
         Restarts a VPC
         '''
@@ -502,85 +1659,621 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'vpcid' : vpcId,
         })
     
-    def createLoadBalancerRule(self, algorithm, name, privatePort, publicPort, account = "", cidrList = "", description = "", domainId = "", networkId = "", openFirewall = "", publicIpId = "", zoneId = ""):
+    def attachIso(self, id, virtualMachineId):
         '''
-        Creates a load balancer rule
+        Attaches an ISO to a virtual machine.
         '''
 
-        return self.request("createLoadBalancerRule", {
-            'algorithm' : algorithm,
-            'name' : name,
-            'privateport' : privatePort,
-            'publicport' : publicPort,
+        return self.request("attachIso", {
+            'id' : id,
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def detachIso(self, virtualMachineId):
+        '''
+        Detaches any ISO file (if any) currently attached to a virtual machine.
+        '''
+
+        return self.request("detachIso", {
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def listIsos(self, account = "", bootable = "", domainId = "", hypervisor = "", id = "", isoFilter = "", isPublic = "", isReady = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", showRemoved = "", tags = "", zoneId = ""):
+        '''
+        Lists all available ISO files.
+        '''
+
+        return self.request("listIsos", {
             'account' : account,
-            'cidrlist' : cidrList,
-            'description' : description,
+            'bootable' : bootable,
             'domainid' : domainId,
-            'networkid' : networkId,
-            'openfirewall' : openFirewall,
-            'publicipid' : publicIpId,
+            'hypervisor' : hypervisor,
+            'id' : id,
+            'isofilter' : isoFilter,
+            'ispublic' : isPublic,
+            'isready' : isReady,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'showremoved' : showRemoved,
+            'tags' : tags,
             'zoneid' : zoneId,
         })
     
-    def deleteLoadBalancerRule(self, id):
+    def registerIso(self, displayText, name, url, zoneId, account = "", bootable = "", checksum = "", domainId = "", imageStoreUuid = "", isDynamicallyScalable = "", isExtractable = "", isFeatured = "", isPublic = "", osTypeId = "", projectId = ""):
         '''
-        Deletes a load balancer rule.
-        '''
-
-        return self.request("deleteLoadBalancerRule", {
-            'id' : id,
-        })
-    
-    def removeFromLoadBalancerRule(self, id, virtualMachineIds):
-        '''
-        Removes a virtual machine or a list of virtual machines from a load balancer rule.
+        Registers an existing ISO into the CloudStack Cloud.
         '''
 
-        return self.request("removeFromLoadBalancerRule", {
-            'id' : id,
-            'virtualmachineids' : virtualMachineIds,
-        })
-    
-    def assignToLoadBalancerRule(self, id, virtualMachineIds):
-        '''
-        Assigns virtual machine or a list of virtual machines to a load balancer rule.
-        '''
-
-        return self.request("assignToLoadBalancerRule", {
-            'id' : id,
-            'virtualmachineids' : virtualMachineIds,
-        })
-    
-    def createLBStickinessPolicy(self, lbruleId, methodName, name, description = "", param = ""):
-        '''
-        Creates a Load Balancer stickiness policy
-        '''
-
-        return self.request("createLBStickinessPolicy", {
-            'lbruleid' : lbruleId,
-            'methodname' : methodName,
+        return self.request("registerIso", {
+            'displaytext' : displayText,
             'name' : name,
-            'description' : description,
-            'param' : param,
+            'url' : url,
+            'zoneid' : zoneId,
+            'account' : account,
+            'bootable' : bootable,
+            'checksum' : checksum,
+            'domainid' : domainId,
+            'imagestoreuuid' : imageStoreUuid,
+            'isdynamicallyscalable' : isDynamicallyScalable,
+            'isextractable' : isExtractable,
+            'isfeatured' : isFeatured,
+            'ispublic' : isPublic,
+            'ostypeid' : osTypeId,
+            'projectid' : projectId,
         })
     
-    def deleteLBStickinessPolicy(self, id):
+    def updateIso(self, id, bootable = "", displayText = "", format = "", isDynamicallyScalable = "", isRouting = "", name = "", osTypeId = "", passwordEnabled = "", sortKey = ""):
         '''
-        Deletes a LB stickiness policy.
+        Updates an ISO file.
         '''
 
-        return self.request("deleteLBStickinessPolicy", {
+        return self.request("updateIso", {
+            'id' : id,
+            'bootable' : bootable,
+            'displaytext' : displayText,
+            'format' : format,
+            'isdynamicallyscalable' : isDynamicallyScalable,
+            'isrouting' : isRouting,
+            'name' : name,
+            'ostypeid' : osTypeId,
+            'passwordenabled' : passwordEnabled,
+            'sortkey' : sortKey,
+        })
+    
+    def deleteIso(self, id, zoneId = ""):
+        '''
+        Deletes an ISO file.
+        '''
+
+        return self.request("deleteIso", {
+            'id' : id,
+            'zoneid' : zoneId,
+        })
+    
+    def copyIso(self, id, destZoneId, sourceZoneId = ""):
+        '''
+        Copies an iso from one zone to another.
+        '''
+
+        return self.request("copyIso", {
+            'id' : id,
+            'destzoneid' : destZoneId,
+            'sourcezoneid' : sourceZoneId,
+        })
+    
+    def updateIsoPermissions(self, id, accounts = "", isExtractable = "", isFeatured = "", isPublic = "", op = "", projectids = ""):
+        '''
+        Updates iso permissions
+        '''
+
+        return self.request("updateIsoPermissions", {
+            'id' : id,
+            'accounts' : accounts,
+            'isextractable' : isExtractable,
+            'isfeatured' : isFeatured,
+            'ispublic' : isPublic,
+            'op' : op,
+            'projectids' : projectids,
+        })
+    
+    def listIsoPermissions(self, id):
+        '''
+        List iso visibility and all accounts that have permissions to view this iso.
+        '''
+
+        return self.request("listIsoPermissions", {
             'id' : id,
         })
     
-    def listLoadBalancerRules(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", publicIpId = "", tags = "", virtualMachineId = "", zoneId = ""):
+    def extractIso(self, id, mode, url = "", zoneId = ""):
         '''
-        Lists load balancer rules.
+        Extracts an ISO
         '''
 
-        return self.request("listLoadBalancerRules", {
+        return self.request("extractIso", {
+            'id' : id,
+            'mode' : mode,
+            'url' : url,
+            'zoneid' : zoneId,
+        })
+    
+    def createAccount(self, accountType, email, firstName, lastname, password, userName, account = "", accountDetails = "", accountId = "", domainId = "", networkDomain = "", timezone = "", userId = ""):
+        '''
+        Creates an account
+        '''
+
+        return self.request("createAccount", {
+            'accounttype' : accountType,
+            'email' : email,
+            'firstname' : firstName,
+            'lastname' : lastname,
+            'password' : password,
+            'username' : userName,
+            'account' : account,
+            'accountdetails' : accountDetails,
+            'accountid' : accountId,
+            'domainid' : domainId,
+            'networkdomain' : networkDomain,
+            'timezone' : timezone,
+            'userid' : userId,
+        })
+    
+    def deleteAccount(self, id):
+        '''
+        Deletes a account, and all users associated with this account
+        '''
+
+        return self.request("deleteAccount", {
+            'id' : id,
+        })
+    
+    def updateAccount(self, newName, account = "", accountDetails = "", domainId = "", id = "", networkDomain = ""):
+        '''
+        Updates account information for the authenticated user
+        '''
+
+        return self.request("updateAccount", {
+            'newname' : newName,
+            'account' : account,
+            'accountdetails' : accountDetails,
+            'domainid' : domainId,
+            'id' : id,
+            'networkdomain' : networkDomain,
+        })
+    
+    def disableAccount(self, lock, account = "", domainId = "", id = ""):
+        '''
+        Disables an account
+        '''
+
+        return self.request("disableAccount", {
+            'lock' : lock,
             'account' : account,
             'domainid' : domainId,
+            'id' : id,
+        })
+    
+    def enableAccount(self, account = "", domainId = "", id = ""):
+        '''
+        Enables an account
+        '''
+
+        return self.request("enableAccount", {
+            'account' : account,
+            'domainid' : domainId,
+            'id' : id,
+        })
+    
+    def lockAccount(self, account, domainId):
+        '''
+        Locks an account
+        '''
+
+        return self.request("lockAccount", {
+            'account' : account,
+            'domainid' : domainId,
+        })
+    
+    def listAccounts(self, accountType = "", domainId = "", id = "", isCleanUpRequired = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", state = ""):
+        '''
+        Lists accounts and provides detailed account information for listed accounts
+        '''
+
+        return self.request("listAccounts", {
+            'accounttype' : accountType,
+            'domainid' : domainId,
+            'id' : id,
+            'iscleanuprequired' : isCleanUpRequired,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+            'state' : state,
+        })
+    
+    def addAccountToProject(self, projectId, account = "", email = ""):
+        '''
+        Adds acoount to a project
+        '''
+
+        return self.request("addAccountToProject", {
+            'projectid' : projectId,
+            'account' : account,
+            'email' : email,
+        })
+    
+    def deleteAccountFromProject(self, account, projectId):
+        '''
+        Deletes account from the project
+        '''
+
+        return self.request("deleteAccountFromProject", {
+            'account' : account,
+            'projectid' : projectId,
+        })
+    
+    def listProjectAccounts(self, projectId, account = "", keyword = "", page = "", pageSize = "", role = ""):
+        '''
+        Lists project's accounts
+        '''
+
+        return self.request("listProjectAccounts", {
+            'projectid' : projectId,
+            'account' : account,
+            'keyword' : keyword,
+            'page' : page,
+            'pagesize' : pageSize,
+            'role' : role,
+        })
+    
+    def attachVolume(self, id, virtualMachineId, deviceId = ""):
+        '''
+        Attaches a disk volume to a virtual machine.
+        '''
+
+        return self.request("attachVolume", {
+            'id' : id,
+            'virtualmachineid' : virtualMachineId,
+            'deviceid' : deviceId,
+        })
+    
+    def uploadVolume(self, format, name, url, zoneId, account = "", checksum = "", diskOfferingId = "", domainId = "", imageStoreUuid = "", projectId = ""):
+        '''
+        Uploads a data disk.
+        '''
+
+        return self.request("uploadVolume", {
+            'format' : format,
+            'name' : name,
+            'url' : url,
+            'zoneid' : zoneId,
+            'account' : account,
+            'checksum' : checksum,
+            'diskofferingid' : diskOfferingId,
+            'domainid' : domainId,
+            'imagestoreuuid' : imageStoreUuid,
+            'projectid' : projectId,
+        })
+    
+    def detachVolume(self, deviceId = "", id = "", virtualMachineId = ""):
+        '''
+        Detaches a disk volume from a virtual machine.
+        '''
+
+        return self.request("detachVolume", {
+            'deviceid' : deviceId,
+            'id' : id,
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def createVolume(self, name, account = "", customId = "", diskOfferingId = "", displayVolume = "", domainId = "", maxIops = "", minIops = "", projectId = "", size = "", snapshotId = "", virtualMachineId = "", zoneId = ""):
+        '''
+        Creates a disk volume from a disk offering. This disk volume must still be attached to a virtual machine to make use of it.
+        '''
+
+        return self.request("createVolume", {
+            'name' : name,
+            'account' : account,
+            'customid' : customId,
+            'diskofferingid' : diskOfferingId,
+            'displayvolume' : displayVolume,
+            'domainid' : domainId,
+            'maxiops' : maxIops,
+            'miniops' : minIops,
+            'projectid' : projectId,
+            'size' : size,
+            'snapshotid' : snapshotId,
+            'virtualmachineid' : virtualMachineId,
+            'zoneid' : zoneId,
+        })
+    
+    def deleteVolume(self, id):
+        '''
+        Deletes a detached disk volume.
+        '''
+
+        return self.request("deleteVolume", {
+            'id' : id,
+        })
+    
+    def listVolumes(self, account = "", diskOfferingId = "", displayVolume = "", domainId = "", hostId = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", podId = "", projectId = "", storageId = "", tags = "", type = "", virtualMachineId = "", zoneId = ""):
+        '''
+        Lists all volumes.
+        '''
+
+        return self.request("listVolumes", {
+            'account' : account,
+            'diskofferingid' : diskOfferingId,
+            'displayvolume' : displayVolume,
+            'domainid' : domainId,
+            'hostid' : hostId,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+            'podid' : podId,
+            'projectid' : projectId,
+            'storageid' : storageId,
+            'tags' : tags,
+            'type' : type,
+            'virtualmachineid' : virtualMachineId,
+            'zoneid' : zoneId,
+        })
+    
+    def extractVolume(self, id, mode, zoneId, url = ""):
+        '''
+        Extracts volume
+        '''
+
+        return self.request("extractVolume", {
+            'id' : id,
+            'mode' : mode,
+            'zoneid' : zoneId,
+            'url' : url,
+        })
+    
+    def migrateVolume(self, storageId, volumeId, liveMigrate = ""):
+        '''
+        Migrate volume
+        '''
+
+        return self.request("migrateVolume", {
+            'storageid' : storageId,
+            'volumeid' : volumeId,
+            'livemigrate' : liveMigrate,
+        })
+    
+    def resizeVolume(self, id, diskOfferingId = "", shrinkOk = "", size = ""):
+        '''
+        Resizes a volume
+        '''
+
+        return self.request("resizeVolume", {
+            'id' : id,
+            'diskofferingid' : diskOfferingId,
+            'shrinkok' : shrinkOk,
+            'size' : size,
+        })
+    
+    def createUser(self, account, email, firstName, lastname, password, userName, domainId = "", timezone = "", userId = ""):
+        '''
+        Creates a user for an account that already exists
+        '''
+
+        return self.request("createUser", {
+            'account' : account,
+            'email' : email,
+            'firstname' : firstName,
+            'lastname' : lastname,
+            'password' : password,
+            'username' : userName,
+            'domainid' : domainId,
+            'timezone' : timezone,
+            'userid' : userId,
+        })
+    
+    def deleteUser(self, id):
+        '''
+        Deletes a user for an account
+        '''
+
+        return self.request("deleteUser", {
+            'id' : id,
+        })
+    
+    def updateUser(self, id, email = "", firstName = "", lastname = "", password = "", timezone = "", userApiKey = "", userName = "", userSecretKey = ""):
+        '''
+        Updates a user account
+        '''
+
+        return self.request("updateUser", {
+            'id' : id,
+            'email' : email,
+            'firstname' : firstName,
+            'lastname' : lastname,
+            'password' : password,
+            'timezone' : timezone,
+            'userapikey' : userApiKey,
+            'username' : userName,
+            'usersecretkey' : userSecretKey,
+        })
+    
+    def listUsers(self, account = "", accountType = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", state = "", userName = ""):
+        '''
+        Lists user accounts
+        '''
+
+        return self.request("listUsers", {
+            'account' : account,
+            'accounttype' : accountType,
+            'domainid' : domainId,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'state' : state,
+            'username' : userName,
+        })
+    
+    def lockUser(self, id):
+        '''
+        Locks a user account
+        '''
+
+        return self.request("lockUser", {
+            'id' : id,
+        })
+    
+    def disableUser(self, id):
+        '''
+        Disables a user account
+        '''
+
+        return self.request("disableUser", {
+            'id' : id,
+        })
+    
+    def enableUser(self, id):
+        '''
+        Enables a user account
+        '''
+
+        return self.request("enableUser", {
+            'id' : id,
+        })
+    
+    def getVirtualMachineUserData(self, virtualMachineId):
+        '''
+        Returns user data associated with the VM
+        '''
+
+        return self.request("getVirtualMachineUserData", {
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def registerUserKeys(self, id):
+        '''
+        This command allows a user to register for the developer API, returning a secret key and an API key. This request is made through the integration API port, so it is a privileged command and must be made on behalf of a user. It is up to the implementer just how the username and password are entered, and then how that translates to an integration API request. Both secret key and API key should be returned to the user
+        '''
+
+        return self.request("registerUserKeys", {
+            'id' : id,
+        })
+    
+    def createTemplate(self, displayText, name, osTypeId, bits = "", details = "", isDynamicallyScalable = "", isFeatured = "", isPublic = "", passwordEnabled = "", requireShvm = "", snapshotId = "", templateTag = "", url = "", virtualMachineId = "", volumeId = ""):
+        '''
+        Creates a template of a virtual machine. The virtual machine must be in a STOPPED state. A template created from this command is automatically designated as a private template visible to the account that created it.
+        '''
+
+        return self.request("createTemplate", {
+            'displaytext' : displayText,
+            'name' : name,
+            'ostypeid' : osTypeId,
+            'bits' : bits,
+            'details' : details,
+            'isdynamicallyscalable' : isDynamicallyScalable,
+            'isfeatured' : isFeatured,
+            'ispublic' : isPublic,
+            'passwordenabled' : passwordEnabled,
+            'requireshvm' : requireShvm,
+            'snapshotid' : snapshotId,
+            'templatetag' : templateTag,
+            'url' : url,
+            'virtualmachineid' : virtualMachineId,
+            'volumeid' : volumeId,
+        })
+    
+    def registerTemplate(self, displayText, format, hypervisor, name, osTypeId, url, zoneId, account = "", bits = "", checksum = "", details = "", domainId = "", isDynamicallyScalable = "", isExtractable = "", isFeatured = "", isPublic = "", isRouting = "", passwordEnabled = "", projectId = "", requireShvm = "", sshkeyEnabled = "", templateTag = ""):
+        '''
+        Registers an existing template into the CloudStack cloud.
+        '''
+
+        return self.request("registerTemplate", {
+            'displaytext' : displayText,
+            'format' : format,
+            'hypervisor' : hypervisor,
+            'name' : name,
+            'ostypeid' : osTypeId,
+            'url' : url,
+            'zoneid' : zoneId,
+            'account' : account,
+            'bits' : bits,
+            'checksum' : checksum,
+            'details' : details,
+            'domainid' : domainId,
+            'isdynamicallyscalable' : isDynamicallyScalable,
+            'isextractable' : isExtractable,
+            'isfeatured' : isFeatured,
+            'ispublic' : isPublic,
+            'isrouting' : isRouting,
+            'passwordenabled' : passwordEnabled,
+            'projectid' : projectId,
+            'requireshvm' : requireShvm,
+            'sshkeyenabled' : sshkeyEnabled,
+            'templatetag' : templateTag,
+        })
+    
+    def updateTemplate(self, id, bootable = "", displayText = "", format = "", isDynamicallyScalable = "", isRouting = "", name = "", osTypeId = "", passwordEnabled = "", sortKey = ""):
+        '''
+        Updates attributes of a template.
+        '''
+
+        return self.request("updateTemplate", {
+            'id' : id,
+            'bootable' : bootable,
+            'displaytext' : displayText,
+            'format' : format,
+            'isdynamicallyscalable' : isDynamicallyScalable,
+            'isrouting' : isRouting,
+            'name' : name,
+            'ostypeid' : osTypeId,
+            'passwordenabled' : passwordEnabled,
+            'sortkey' : sortKey,
+        })
+    
+    def copyTemplate(self, id, destZoneId, sourceZoneId = ""):
+        '''
+        Copies a template from one zone to another.
+        '''
+
+        return self.request("copyTemplate", {
+            'id' : id,
+            'destzoneid' : destZoneId,
+            'sourcezoneid' : sourceZoneId,
+        })
+    
+    def deleteTemplate(self, id, zoneId = ""):
+        '''
+        Deletes a template from the system. All virtual machines using the deleted template will not be affected.
+        '''
+
+        return self.request("deleteTemplate", {
+            'id' : id,
+            'zoneid' : zoneId,
+        })
+    
+    def listTemplates(self, templateFilter, account = "", domainId = "", hypervisor = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", showRemoved = "", tags = "", zoneId = ""):
+        '''
+        List all public, private, and privileged templates.
+        '''
+
+        return self.request("listTemplates", {
+            'templatefilter' : templateFilter,
+            'account' : account,
+            'domainid' : domainId,
+            'hypervisor' : hypervisor,
             'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
@@ -589,47 +2282,45 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'page' : page,
             'pagesize' : pageSize,
             'projectid' : projectId,
-            'publicipid' : publicIpId,
+            'showremoved' : showRemoved,
             'tags' : tags,
-            'virtualmachineid' : virtualMachineId,
             'zoneid' : zoneId,
         })
     
-    def listLBStickinessPolicies(self, lbruleId, keyword = "", page = "", pageSize = ""):
+    def updateTemplatePermissions(self, id, accounts = "", isExtractable = "", isFeatured = "", isPublic = "", op = "", projectids = ""):
         '''
-        Lists LBStickiness policies.
+        Updates a template visibility permissions. A public template is visible to all accounts within the same domain. A private template is visible only to the owner of the template. A priviledged template is a private template with account permissions added. Only accounts specified under the template permissions are visible to them.
         '''
 
-        return self.request("listLBStickinessPolicies", {
-            'lbruleid' : lbruleId,
-            'keyword' : keyword,
-            'page' : page,
-            'pagesize' : pageSize,
+        return self.request("updateTemplatePermissions", {
+            'id' : id,
+            'accounts' : accounts,
+            'isextractable' : isExtractable,
+            'isfeatured' : isFeatured,
+            'ispublic' : isPublic,
+            'op' : op,
+            'projectids' : projectids,
         })
     
-    def listLoadBalancerRuleInstances(self, id, applied = "", keyword = "", page = "", pageSize = ""):
+    def listTemplatePermissions(self, id):
         '''
-        List all virtual machine instances that are assigned to a load balancer rule.
+        List template visibility and all accounts that have permissions to view this template.
         '''
 
-        return self.request("listLoadBalancerRuleInstances", {
+        return self.request("listTemplatePermissions", {
             'id' : id,
-            'applied' : applied,
-            'keyword' : keyword,
-            'page' : page,
-            'pagesize' : pageSize,
         })
     
-    def updateLoadBalancerRule(self, id, algorithm = "", description = "", name = ""):
+    def extractTemplate(self, id, mode, url = "", zoneId = ""):
         '''
-        Updates load balancer
+        Extracts a template
         '''
 
-        return self.request("updateLoadBalancerRule", {
+        return self.request("extractTemplate", {
             'id' : id,
-            'algorithm' : algorithm,
-            'description' : description,
-            'name' : name,
+            'mode' : mode,
+            'url' : url,
+            'zoneid' : zoneId,
         })
     
     def startRouter(self, id):
@@ -679,13 +2370,14 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'serviceofferingid' : serviceOfferingId,
         })
     
-    def listRouters(self, account = "", domainId = "", forVpc = "", hostId = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", networkId = "", page = "", pageSize = "", podId = "", projectId = "", state = "", vpcId = "", zoneId = ""):
+    def listRouters(self, account = "", clusterId = "", domainId = "", forVpc = "", hostId = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", networkId = "", page = "", pageSize = "", podId = "", projectId = "", state = "", version = "", vpcId = "", zoneId = ""):
         '''
         List routers.
         '''
 
         return self.request("listRouters", {
             'account' : account,
+            'clusterid' : clusterId,
             'domainid' : domainId,
             'forvpc' : forVpc,
             'hostid' : hostId,
@@ -700,27 +2392,9 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'podid' : podId,
             'projectid' : projectId,
             'state' : state,
+            'version' : version,
             'vpcid' : vpcId,
             'zoneid' : zoneId,
-        })
-    
-    def createVirtualRouterElement(self, nspId):
-        '''
-        Create a virtual router element.
-        '''
-
-        return self.request("createVirtualRouterElement", {
-            'nspid' : nspId,
-        })
-    
-    def configureVirtualRouterElement(self, id, enabled):
-        '''
-        Configures a virtual router element.
-        '''
-
-        return self.request("configureVirtualRouterElement", {
-            'id' : id,
-            'enabled' : enabled,
         })
     
     def listVirtualRouterElements(self, enabled = "", id = "", keyword = "", nspId = "", page = "", pageSize = ""):
@@ -735,6 +2409,26 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'nspid' : nspId,
             'page' : page,
             'pagesize' : pageSize,
+        })
+    
+    def configureVirtualRouterElement(self, id, enabled):
+        '''
+        Configures a virtual router element.
+        '''
+
+        return self.request("configureVirtualRouterElement", {
+            'id' : id,
+            'enabled' : enabled,
+        })
+    
+    def createVirtualRouterElement(self, nspId, providerType = ""):
+        '''
+        Create a virtual router element.
+        '''
+
+        return self.request("createVirtualRouterElement", {
+            'nspid' : nspId,
+            'providertype' : providerType,
         })
     
     def createProject(self, displayText, name, account = "", domainId = ""):
@@ -847,134 +2541,42 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'id' : id,
         })
     
-    def listNetworkOfferings(self, availability = "", displayText = "", forVpc = "", guestIpType = "", id = "", isDefault = "", isTagged = "", keyword = "", name = "", networkId = "", page = "", pageSize = "", sourceNatSupported = "", specifyIpRanges = "", specifyVlan = "", state = "", supportedServices = "", tags = "", trafficType = "", zoneId = ""):
+    def createNetworkACL(self, protocol, aclId = "", action = "", cidrList = "", endPort = "", forDisplay = "", icmpCode = "", icmpType = "", networkId = "", number = "", startPort = "", trafficType = ""):
         '''
-        Lists all available network offerings.
-        '''
-
-        return self.request("listNetworkOfferings", {
-            'availability' : availability,
-            'displaytext' : displayText,
-            'forvpc' : forVpc,
-            'guestiptype' : guestIpType,
-            'id' : id,
-            'isdefault' : isDefault,
-            'istagged' : isTagged,
-            'keyword' : keyword,
-            'name' : name,
-            'networkid' : networkId,
-            'page' : page,
-            'pagesize' : pageSize,
-            'sourcenatsupported' : sourceNatSupported,
-            'specifyipranges' : specifyIpRanges,
-            'specifyvlan' : specifyVlan,
-            'state' : state,
-            'supportedservices' : supportedServices,
-            'tags' : tags,
-            'traffictype' : trafficType,
-            'zoneid' : zoneId,
-        })
-    
-    def createNetwork(self, displayText, name, networkOfferingId, zoneId, account = "", aclType = "", domainId = "", endIp = "", gateway = "", netmask = "", networkDomain = "", physicalNetworkId = "", projectId = "", startIp = "", subDomainAccess = "", vlan = "", vpcId = ""):
-        '''
-        Creates a network
-        '''
-
-        return self.request("createNetwork", {
-            'displaytext' : displayText,
-            'name' : name,
-            'networkofferingid' : networkOfferingId,
-            'zoneid' : zoneId,
-            'account' : account,
-            'acltype' : aclType,
-            'domainid' : domainId,
-            'endip' : endIp,
-            'gateway' : gateway,
-            'netmask' : netmask,
-            'networkdomain' : networkDomain,
-            'physicalnetworkid' : physicalNetworkId,
-            'projectid' : projectId,
-            'startip' : startIp,
-            'subdomainaccess' : subDomainAccess,
-            'vlan' : vlan,
-            'vpcid' : vpcId,
-        })
-    
-    def deleteNetwork(self, id):
-        '''
-        Deletes a network
-        '''
-
-        return self.request("deleteNetwork", {
-            'id' : id,
-        })
-    
-    def listNetworks(self, account = "", aclType = "", canUseForDeploy = "", domainId = "", forVpc = "", id = "", isRecursive = "", isSystem = "", keyword = "", listAll = "", page = "", pageSize = "", physicalNetworkId = "", projectId = "", restartRequired = "", specifyIpRanges = "", supportedServices = "", tags = "", trafficType = "", type = "", vpcId = "", zoneId = ""):
-        '''
-        Lists all available networks.
-        '''
-
-        return self.request("listNetworks", {
-            'account' : account,
-            'acltype' : aclType,
-            'canusefordeploy' : canUseForDeploy,
-            'domainid' : domainId,
-            'forvpc' : forVpc,
-            'id' : id,
-            'isrecursive' : isRecursive,
-            'issystem' : isSystem,
-            'keyword' : keyword,
-            'listall' : listAll,
-            'page' : page,
-            'pagesize' : pageSize,
-            'physicalnetworkid' : physicalNetworkId,
-            'projectid' : projectId,
-            'restartrequired' : restartRequired,
-            'specifyipranges' : specifyIpRanges,
-            'supportedservices' : supportedServices,
-            'tags' : tags,
-            'traffictype' : trafficType,
-            'type' : type,
-            'vpcid' : vpcId,
-            'zoneid' : zoneId,
-        })
-    
-    def restartNetwork(self, id, cleanup = ""):
-        '''
-        Restarts the network; includes 1) restarting network elements - virtual routers, dhcp servers 2) reapplying all public ips 3) reapplying loadBalancing/portForwarding rules
-        '''
-
-        return self.request("restartNetwork", {
-            'id' : id,
-            'cleanup' : cleanup,
-        })
-    
-    def updateNetwork(self, id, changeCidr = "", displayText = "", name = "", networkDomain = "", networkOfferingId = ""):
-        '''
-        Updates a network
-        '''
-
-        return self.request("updateNetwork", {
-            'id' : id,
-            'changecidr' : changeCidr,
-            'displaytext' : displayText,
-            'name' : name,
-            'networkdomain' : networkDomain,
-            'networkofferingid' : networkOfferingId,
-        })
-    
-    def createNetworkACL(self, networkId, protocol, cidrList = "", endPort = "", icmpCode = "", icmpType = "", startPort = "", trafficType = ""):
-        '''
-        Creates a ACL rule the given network (the network has to belong to VPC)
+        Creates a ACL rule in the given network (the network has to belong to VPC)
         '''
 
         return self.request("createNetworkACL", {
-            'networkid' : networkId,
             'protocol' : protocol,
+            'aclid' : aclId,
+            'action' : action,
             'cidrlist' : cidrList,
             'endport' : endPort,
+            'fordisplay' : forDisplay,
             'icmpcode' : icmpCode,
             'icmptype' : icmpType,
+            'networkid' : networkId,
+            'number' : number,
+            'startport' : startPort,
+            'traffictype' : trafficType,
+        })
+    
+    def updateNetworkACLItem(self, id, action = "", cidrList = "", customId = "", endPort = "", forDisplay = "", icmpCode = "", icmpType = "", number = "", protocol = "", startPort = "", trafficType = ""):
+        '''
+        Updates ACL Item with specified Id
+        '''
+
+        return self.request("updateNetworkACLItem", {
+            'id' : id,
+            'action' : action,
+            'cidrlist' : cidrList,
+            'customid' : customId,
+            'endport' : endPort,
+            'fordisplay' : forDisplay,
+            'icmpcode' : icmpCode,
+            'icmptype' : icmpType,
+            'number' : number,
+            'protocol' : protocol,
             'startport' : startPort,
             'traffictype' : trafficType,
         })
@@ -988,14 +2590,17 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'id' : id,
         })
     
-    def listNetworkACLs(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", networkId = "", page = "", pageSize = "", projectId = "", tags = "", trafficType = ""):
+    def listNetworkACLs(self, account = "", aclId = "", action = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", networkId = "", page = "", pageSize = "", projectId = "", protocol = "", tags = "", trafficType = ""):
         '''
-        Lists all network ACLs
+        Lists all network ACL items
         '''
 
         return self.request("listNetworkACLs", {
             'account' : account,
+            'aclid' : aclId,
+            'action' : action,
             'domainid' : domainId,
+            'fordisplay' : forDisplay,
             'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
@@ -1004,350 +2609,73 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'page' : page,
             'pagesize' : pageSize,
             'projectid' : projectId,
+            'protocol' : protocol,
             'tags' : tags,
             'traffictype' : trafficType,
         })
     
-    def attachIso(self, id, virtualMachineId):
+    def createNetworkACLList(self, name, vpcId, description = "", forDisplay = ""):
         '''
-        Attaches an ISO to a virtual machine.
-        '''
-
-        return self.request("attachIso", {
-            'id' : id,
-            'virtualmachineid' : virtualMachineId,
-        })
-    
-    def detachIso(self, virtualMachineId):
-        '''
-        Detaches any ISO file (if any) currently attached to a virtual machine.
+        Creates a Network ACL for the given VPC
         '''
 
-        return self.request("detachIso", {
-            'virtualmachineid' : virtualMachineId,
-        })
-    
-    def listIsos(self, account = "", bootable = "", domainId = "", hypervisor = "", id = "", isoFilter = "", isPublic = "", isReady = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", tags = "", zoneId = ""):
-        '''
-        Lists all available ISO files.
-        '''
-
-        return self.request("listIsos", {
-            'account' : account,
-            'bootable' : bootable,
-            'domainid' : domainId,
-            'hypervisor' : hypervisor,
-            'id' : id,
-            'isofilter' : isoFilter,
-            'ispublic' : isPublic,
-            'isready' : isReady,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'listall' : listAll,
+        return self.request("createNetworkACLList", {
             'name' : name,
-            'page' : page,
-            'pagesize' : pageSize,
-            'projectid' : projectId,
-            'tags' : tags,
-            'zoneid' : zoneId,
+            'vpcid' : vpcId,
+            'description' : description,
+            'fordisplay' : forDisplay,
         })
     
-    def updateIso(self, id, bootable = "", displayText = "", format = "", name = "", osTypeId = "", passwordEnabled = "", sortKey = ""):
+    def deleteNetworkACLList(self, id):
         '''
-        Updates an ISO file.
-        '''
-
-        return self.request("updateIso", {
-            'id' : id,
-            'bootable' : bootable,
-            'displaytext' : displayText,
-            'format' : format,
-            'name' : name,
-            'ostypeid' : osTypeId,
-            'passwordenabled' : passwordEnabled,
-            'sortkey' : sortKey,
-        })
-    
-    def deleteIso(self, id, zoneId = ""):
-        '''
-        Deletes an ISO file.
+        Deletes a Network ACL
         '''
 
-        return self.request("deleteIso", {
-            'id' : id,
-            'zoneid' : zoneId,
-        })
-    
-    def copyIso(self, id, destzoneId, sourceZoneId):
-        '''
-        Copies a template from one zone to another.
-        '''
-
-        return self.request("copyIso", {
-            'id' : id,
-            'destzoneid' : destzoneId,
-            'sourcezoneid' : sourceZoneId,
-        })
-    
-    def updateIsoPermissions(self, id, accounts = "", isExtractable = "", isFeatured = "", isPublic = "", op = "", projectids = ""):
-        '''
-        Updates iso permissions
-        '''
-
-        return self.request("updateIsoPermissions", {
-            'id' : id,
-            'accounts' : accounts,
-            'isextractable' : isExtractable,
-            'isfeatured' : isFeatured,
-            'ispublic' : isPublic,
-            'op' : op,
-            'projectids' : projectids,
-        })
-    
-    def listIsoPermissions(self, id):
-        '''
-        List template visibility and all accounts that have permissions to view this template.
-        '''
-
-        return self.request("listIsoPermissions", {
+        return self.request("deleteNetworkACLList", {
             'id' : id,
         })
     
-    def extractIso(self, id, mode, url = "", zoneId = ""):
+    def replaceNetworkACLList(self, aclId, gatewayId = "", networkId = ""):
         '''
-        Extracts an ISO
+        Replaces ACL associated with a Network or private gateway
         '''
 
-        return self.request("extractIso", {
-            'id' : id,
-            'mode' : mode,
-            'url' : url,
-            'zoneid' : zoneId,
+        return self.request("replaceNetworkACLList", {
+            'aclid' : aclId,
+            'gatewayid' : gatewayId,
+            'networkid' : networkId,
         })
     
-    def attachVolume(self, id, virtualMachineId, deviceId = ""):
+    def listNetworkACLLists(self, account = "", domainId = "", forDisplay = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", networkId = "", page = "", pageSize = "", projectId = "", vpcId = ""):
         '''
-        Attaches a disk volume to a virtual machine.
-        '''
-
-        return self.request("attachVolume", {
-            'id' : id,
-            'virtualmachineid' : virtualMachineId,
-            'deviceid' : deviceId,
-        })
-    
-    def uploadVolume(self, format, name, url, zoneId, account = "", checksum = "", domainId = ""):
-        '''
-        Uploads a data disk.
+        Lists all network ACLs
         '''
 
-        return self.request("uploadVolume", {
-            'format' : format,
-            'name' : name,
-            'url' : url,
-            'zoneid' : zoneId,
-            'account' : account,
-            'checksum' : checksum,
-            'domainid' : domainId,
-        })
-    
-    def detachVolume(self, deviceId = "", id = "", virtualMachineId = ""):
-        '''
-        Detaches a disk volume from a virtual machine.
-        '''
-
-        return self.request("detachVolume", {
-            'deviceid' : deviceId,
-            'id' : id,
-            'virtualmachineid' : virtualMachineId,
-        })
-    
-    def createVolume(self, name, account = "", diskOfferingId = "", domainId = "", projectId = "", size = "", snapshotId = "", zoneId = ""):
-        '''
-        Creates a disk volume from a disk offering. This disk volume must still be attached to a virtual machine to make use of it.
-        '''
-
-        return self.request("createVolume", {
-            'name' : name,
-            'account' : account,
-            'diskofferingid' : diskOfferingId,
-            'domainid' : domainId,
-            'projectid' : projectId,
-            'size' : size,
-            'snapshotid' : snapshotId,
-            'zoneid' : zoneId,
-        })
-    
-    def deleteVolume(self, id):
-        '''
-        Deletes a detached disk volume.
-        '''
-
-        return self.request("deleteVolume", {
-            'id' : id,
-        })
-    
-    def listVolumes(self, account = "", domainId = "", hostId = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", podId = "", projectId = "", tags = "", type = "", virtualMachineId = "", zoneId = ""):
-        '''
-        Lists all volumes.
-        '''
-
-        return self.request("listVolumes", {
+        return self.request("listNetworkACLLists", {
             'account' : account,
             'domainid' : domainId,
-            'hostid' : hostId,
+            'fordisplay' : forDisplay,
             'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
             'listall' : listAll,
             'name' : name,
-            'page' : page,
-            'pagesize' : pageSize,
-            'podid' : podId,
-            'projectid' : projectId,
-            'tags' : tags,
-            'type' : type,
-            'virtualmachineid' : virtualMachineId,
-            'zoneid' : zoneId,
-        })
-    
-    def extractVolume(self, id, mode, zoneId, url = ""):
-        '''
-        Extracts volume
-        '''
-
-        return self.request("extractVolume", {
-            'id' : id,
-            'mode' : mode,
-            'zoneid' : zoneId,
-            'url' : url,
-        })
-    
-    def migrateVolume(self, storageId, volumeId):
-        '''
-        Migrate volume
-        '''
-
-        return self.request("migrateVolume", {
-            'storageid' : storageId,
-            'volumeid' : volumeId,
-        })
-    
-    def createTemplate(self, displayText, name, osTypeId, bits = "", details = "", isFeatured = "", isPublic = "", passwordEnabled = "", requireShvm = "", snapshotId = "", templateTag = "", url = "", virtualMachineId = "", volumeId = ""):
-        '''
-        Creates a template of a virtual machine. The virtual machine must be in a STOPPED state. A template created from this command is automatically designated as a private template visible to the account that created it.
-        '''
-
-        return self.request("createTemplate", {
-            'displaytext' : displayText,
-            'name' : name,
-            'ostypeid' : osTypeId,
-            'bits' : bits,
-            'details' : details,
-            'isfeatured' : isFeatured,
-            'ispublic' : isPublic,
-            'passwordenabled' : passwordEnabled,
-            'requireshvm' : requireShvm,
-            'snapshotid' : snapshotId,
-            'templatetag' : templateTag,
-            'url' : url,
-            'virtualmachineid' : virtualMachineId,
-            'volumeid' : volumeId,
-        })
-    
-    def updateTemplate(self, id, bootable = "", displayText = "", format = "", name = "", osTypeId = "", passwordEnabled = "", sortKey = ""):
-        '''
-        Updates attributes of a template.
-        '''
-
-        return self.request("updateTemplate", {
-            'id' : id,
-            'bootable' : bootable,
-            'displaytext' : displayText,
-            'format' : format,
-            'name' : name,
-            'ostypeid' : osTypeId,
-            'passwordenabled' : passwordEnabled,
-            'sortkey' : sortKey,
-        })
-    
-    def copyTemplate(self, id, destzoneId, sourceZoneId):
-        '''
-        Copies a template from one zone to another.
-        '''
-
-        return self.request("copyTemplate", {
-            'id' : id,
-            'destzoneid' : destzoneId,
-            'sourcezoneid' : sourceZoneId,
-        })
-    
-    def deleteTemplate(self, id, zoneId = ""):
-        '''
-        Deletes a template from the system. All virtual machines using the deleted template will not be affected.
-        '''
-
-        return self.request("deleteTemplate", {
-            'id' : id,
-            'zoneid' : zoneId,
-        })
-    
-    def listTemplates(self, templateFilter, account = "", domainId = "", hypervisor = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", tags = "", zoneId = ""):
-        '''
-        List all public, private, and privileged templates.
-        '''
-
-        return self.request("listTemplates", {
-            'templatefilter' : templateFilter,
-            'account' : account,
-            'domainid' : domainId,
-            'hypervisor' : hypervisor,
-            'id' : id,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'listall' : listAll,
-            'name' : name,
+            'networkid' : networkId,
             'page' : page,
             'pagesize' : pageSize,
             'projectid' : projectId,
-            'tags' : tags,
-            'zoneid' : zoneId,
+            'vpcid' : vpcId,
         })
     
-    def updateTemplatePermissions(self, id, accounts = "", isExtractable = "", isFeatured = "", isPublic = "", op = "", projectids = ""):
+    def updateNetworkACLList(self, id, customId = "", forDisplay = ""):
         '''
-        Updates a template visibility permissions. A public template is visible to all accounts within the same domain. A private template is visible only to the owner of the template. A priviledged template is a private template with account permissions added. Only accounts specified under the template permissions are visible to them.
-        '''
-
-        return self.request("updateTemplatePermissions", {
-            'id' : id,
-            'accounts' : accounts,
-            'isextractable' : isExtractable,
-            'isfeatured' : isFeatured,
-            'ispublic' : isPublic,
-            'op' : op,
-            'projectids' : projectids,
-        })
-    
-    def listTemplatePermissions(self, id):
-        '''
-        List template visibility and all accounts that have permissions to view this template.
+        Updates Network ACL list
         '''
 
-        return self.request("listTemplatePermissions", {
+        return self.request("updateNetworkACLList", {
             'id' : id,
-        })
-    
-    def extractTemplate(self, id, mode, url = "", zoneId = ""):
-        '''
-        Extracts a template
-        '''
-
-        return self.request("extractTemplate", {
-            'id' : id,
-            'mode' : mode,
-            'url' : url,
-            'zoneid' : zoneId,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
         })
     
     def createSecurityGroup(self, name, account = "", description = "", domainId = "", projectId = ""):
@@ -1454,108 +2782,65 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'virtualmachineid' : virtualMachineId,
         })
     
-    def listUsers(self, account = "", accountType = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", state = "", userName = ""):
+    def resetSSHKeyForVirtualMachine(self, id, keyPair, account = "", domainId = "", projectId = ""):
         '''
-        Lists user accounts
+        Resets the SSH Key for virtual machine. The virtual machine must be in a "Stopped" state. [async]
         '''
 
-        return self.request("listUsers", {
-            'account' : account,
-            'accounttype' : accountType,
-            'domainid' : domainId,
+        return self.request("resetSSHKeyForVirtualMachine", {
             'id' : id,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'listall' : listAll,
-            'page' : page,
-            'pagesize' : pageSize,
-            'state' : state,
-            'username' : userName,
-        })
-    
-    def disableUser(self, id):
-        '''
-        Disables a user account
-        '''
-
-        return self.request("disableUser", {
-            'id' : id,
-        })
-    
-    def enableUser(self, id):
-        '''
-        Enables a user account
-        '''
-
-        return self.request("enableUser", {
-            'id' : id,
-        })
-    
-    def addVpnUser(self, password, userName, account = "", domainId = "", projectId = ""):
-        '''
-        Adds vpn users
-        '''
-
-        return self.request("addVpnUser", {
-            'password' : password,
-            'username' : userName,
+            'keypair' : keyPair,
             'account' : account,
             'domainid' : domainId,
             'projectid' : projectId,
         })
     
-    def removeVpnUser(self, userName, account = "", domainId = "", projectId = ""):
+    def registerSSHKeyPair(self, name, publicKey, account = "", domainId = "", projectId = ""):
         '''
-        Removes vpn user
+        Register a public key in a keypair under a certain name
         '''
 
-        return self.request("removeVpnUser", {
-            'username' : userName,
+        return self.request("registerSSHKeyPair", {
+            'name' : name,
+            'publickey' : publicKey,
             'account' : account,
             'domainid' : domainId,
             'projectid' : projectId,
         })
     
-    def listVpnUsers(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", userName = ""):
+    def createSSHKeyPair(self, name, account = "", domainId = "", projectId = ""):
         '''
-        Lists vpn users
+        Create a new keypair and returns the private key
         '''
 
-        return self.request("listVpnUsers", {
+        return self.request("createSSHKeyPair", {
+            'name' : name,
             'account' : account,
             'domainid' : domainId,
-            'id' : id,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'listall' : listAll,
-            'page' : page,
-            'pagesize' : pageSize,
             'projectid' : projectId,
-            'username' : userName,
         })
     
-    def createSnapshot(self, volumeId, account = "", domainId = "", policyId = ""):
+    def deleteSSHKeyPair(self, name, account = "", domainId = "", projectId = ""):
         '''
-        Creates an instant snapshot of a volume.
+        Deletes a keypair by name
         '''
 
-        return self.request("createSnapshot", {
-            'volumeid' : volumeId,
+        return self.request("deleteSSHKeyPair", {
+            'name' : name,
             'account' : account,
             'domainid' : domainId,
-            'policyid' : policyId,
+            'projectid' : projectId,
         })
     
-    def listSnapshots(self, account = "", domainId = "", id = "", intervalType = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = "", snapshotType = "", tags = "", volumeId = ""):
+    def listSSHKeyPairs(self, account = "", domainId = "", fingerprint = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = ""):
         '''
-        Lists all available snapshots for the account.
+        List registered keypairs
         '''
 
-        return self.request("listSnapshots", {
+        return self.request("listSSHKeyPairs", {
             'account' : account,
             'domainid' : domainId,
-            'id' : id,
-            'intervaltype' : intervalType,
+            'fingerprint' : fingerprint,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
             'listall' : listAll,
@@ -1563,223 +2848,109 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'page' : page,
             'pagesize' : pageSize,
             'projectid' : projectId,
-            'snapshottype' : snapshotType,
-            'tags' : tags,
-            'volumeid' : volumeId,
         })
     
-    def deleteSnapshot(self, id):
+    def createNetwork(self, displayText, name, networkOfferingId, zoneId, account = "", aclId = "", aclType = "", displayNetwork = "", domainId = "", endIp = "", endIpV6 = "", gateway = "", ip6Cidr = "", ip6Gateway = "", isolatedPvlan = "", netmask = "", networkDomain = "", physicalNetworkId = "", projectId = "", startIp = "", startIpV6 = "", subDomainAccess = "", vlan = "", vpcId = ""):
         '''
-        Deletes a snapshot of a disk volume.
-        '''
-
-        return self.request("deleteSnapshot", {
-            'id' : id,
-        })
-    
-    def createSnapshotPolicy(self, intervalType, maxSnaps, schedule, timezone, volumeId):
-        '''
-        Creates a snapshot policy for the account.
+        Creates a network
         '''
 
-        return self.request("createSnapshotPolicy", {
-            'intervaltype' : intervalType,
-            'maxsnaps' : maxSnaps,
-            'schedule' : schedule,
-            'timezone' : timezone,
-            'volumeid' : volumeId,
-        })
-    
-    def deleteSnapshotPolicies(self, id = "", ids = ""):
-        '''
-        Deletes snapshot policies for the account.
-        '''
-
-        return self.request("deleteSnapshotPolicies", {
-            'id' : id,
-            'ids' : ids,
-        })
-    
-    def listSnapshotPolicies(self, volumeId, keyword = "", page = "", pageSize = ""):
-        '''
-        Lists snapshot policies.
-        '''
-
-        return self.request("listSnapshotPolicies", {
-            'volumeid' : volumeId,
-            'keyword' : keyword,
-            'page' : page,
-            'pagesize' : pageSize,
-        })
-    
-    def listPortForwardingRules(self, account = "", domainId = "", id = "", ipAddressId = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", tags = ""):
-        '''
-        Lists all port forwarding rules for an IP address.
-        '''
-
-        return self.request("listPortForwardingRules", {
+        return self.request("createNetwork", {
+            'displaytext' : displayText,
+            'name' : name,
+            'networkofferingid' : networkOfferingId,
+            'zoneid' : zoneId,
             'account' : account,
+            'aclid' : aclId,
+            'acltype' : aclType,
+            'displaynetwork' : displayNetwork,
             'domainid' : domainId,
+            'endip' : endIp,
+            'endipv6' : endIpV6,
+            'gateway' : gateway,
+            'ip6cidr' : ip6Cidr,
+            'ip6gateway' : ip6Gateway,
+            'isolatedpvlan' : isolatedPvlan,
+            'netmask' : netmask,
+            'networkdomain' : networkDomain,
+            'physicalnetworkid' : physicalNetworkId,
+            'projectid' : projectId,
+            'startip' : startIp,
+            'startipv6' : startIpV6,
+            'subdomainaccess' : subDomainAccess,
+            'vlan' : vlan,
+            'vpcid' : vpcId,
+        })
+    
+    def deleteNetwork(self, id, forced = ""):
+        '''
+        Deletes a network
+        '''
+
+        return self.request("deleteNetwork", {
             'id' : id,
-            'ipaddressid' : ipAddressId,
+            'forced' : forced,
+        })
+    
+    def listNetworks(self, account = "", aclType = "", canUseForDeploy = "", displayNetwork = "", domainId = "", forVpc = "", id = "", isRecursive = "", isSystem = "", keyword = "", listAll = "", page = "", pageSize = "", physicalNetworkId = "", projectId = "", restartRequired = "", specifyIpRanges = "", supportedServices = "", tags = "", trafficType = "", type = "", vpcId = "", zoneId = ""):
+        '''
+        Lists all available networks.
+        '''
+
+        return self.request("listNetworks", {
+            'account' : account,
+            'acltype' : aclType,
+            'canusefordeploy' : canUseForDeploy,
+            'displaynetwork' : displayNetwork,
+            'domainid' : domainId,
+            'forvpc' : forVpc,
+            'id' : id,
             'isrecursive' : isRecursive,
+            'issystem' : isSystem,
             'keyword' : keyword,
             'listall' : listAll,
             'page' : page,
             'pagesize' : pageSize,
+            'physicalnetworkid' : physicalNetworkId,
             'projectid' : projectId,
+            'restartrequired' : restartRequired,
+            'specifyipranges' : specifyIpRanges,
+            'supportedservices' : supportedServices,
             'tags' : tags,
-        })
-    
-    def createPortForwardingRule(self, ipAddressId, privatePort, protocol, publicPort, virtualMachineId, cidrList = "", networkId = "", openFirewall = "", privateEndPort = "", publicEndPort = ""):
-        '''
-        Creates a port forwarding rule
-        '''
-
-        return self.request("createPortForwardingRule", {
-            'ipaddressid' : ipAddressId,
-            'privateport' : privatePort,
-            'protocol' : protocol,
-            'publicport' : publicPort,
-            'virtualmachineid' : virtualMachineId,
-            'cidrlist' : cidrList,
-            'networkid' : networkId,
-            'openfirewall' : openFirewall,
-            'privateendport' : privateEndPort,
-            'publicendport' : publicEndPort,
-        })
-    
-    def deletePortForwardingRule(self, id):
-        '''
-        Deletes a port forwarding rule
-        '''
-
-        return self.request("deletePortForwardingRule", {
-            'id' : id,
-        })
-    
-    def createFirewallRule(self, ipAddressId, protocol, cidrList = "", endPort = "", icmpCode = "", icmpType = "", startPort = "", type = ""):
-        '''
-        Creates a firewall rule for a given ip address
-        '''
-
-        return self.request("createFirewallRule", {
-            'ipaddressid' : ipAddressId,
-            'protocol' : protocol,
-            'cidrlist' : cidrList,
-            'endport' : endPort,
-            'icmpcode' : icmpCode,
-            'icmptype' : icmpType,
-            'startport' : startPort,
+            'traffictype' : trafficType,
             'type' : type,
+            'vpcid' : vpcId,
+            'zoneid' : zoneId,
         })
     
-    def deleteFirewallRule(self, id):
+    def restartNetwork(self, id, cleanup = ""):
         '''
-        Deletes a firewall rule
+        Restarts the network; includes 1) restarting network elements - virtual routers, dhcp servers 2) reapplying all public ips 3) reapplying loadBalancing/portForwarding rules
         '''
 
-        return self.request("deleteFirewallRule", {
+        return self.request("restartNetwork", {
             'id' : id,
+            'cleanup' : cleanup,
         })
     
-    def listFirewallRules(self, account = "", domainId = "", id = "", ipAddressId = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", tags = ""):
+    def updateNetwork(self, id, changeCidr = "", customId = "", displayNetwork = "", displayText = "", guestVmCidr = "", name = "", networkDomain = "", networkOfferingId = ""):
         '''
-        Lists all firewall rules for an IP address.
-        '''
-
-        return self.request("listFirewallRules", {
-            'account' : account,
-            'domainid' : domainId,
-            'id' : id,
-            'ipaddressid' : ipAddressId,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'listall' : listAll,
-            'page' : page,
-            'pagesize' : pageSize,
-            'projectid' : projectId,
-            'tags' : tags,
-        })
-    
-    def disableAccount(self, lock, account = "", domainId = "", id = ""):
-        '''
-        Disables an account
+        Updates a network
         '''
 
-        return self.request("disableAccount", {
-            'lock' : lock,
-            'account' : account,
-            'domainid' : domainId,
+        return self.request("updateNetwork", {
             'id' : id,
-        })
-    
-    def enableAccount(self, account = "", domainId = "", id = ""):
-        '''
-        Enables an account
-        '''
-
-        return self.request("enableAccount", {
-            'account' : account,
-            'domainid' : domainId,
-            'id' : id,
-        })
-    
-    def listAccounts(self, accountType = "", domainId = "", id = "", isCleanUpRequired = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", state = ""):
-        '''
-        Lists accounts and provides detailed account information for listed accounts
-        '''
-
-        return self.request("listAccounts", {
-            'accounttype' : accountType,
-            'domainid' : domainId,
-            'id' : id,
-            'iscleanuprequired' : isCleanUpRequired,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'listall' : listAll,
+            'changecidr' : changeCidr,
+            'customid' : customId,
+            'displaynetwork' : displayNetwork,
+            'displaytext' : displayText,
+            'guestvmcidr' : guestVmCidr,
             'name' : name,
-            'page' : page,
-            'pagesize' : pageSize,
-            'state' : state,
+            'networkdomain' : networkDomain,
+            'networkofferingid' : networkOfferingId,
         })
     
-    def addAccountToProject(self, projectId, account = "", email = ""):
-        '''
-        Adds acoount to a project
-        '''
-
-        return self.request("addAccountToProject", {
-            'projectid' : projectId,
-            'account' : account,
-            'email' : email,
-        })
-    
-    def deleteAccountFromProject(self, account, projectId):
-        '''
-        Deletes account from the project
-        '''
-
-        return self.request("deleteAccountFromProject", {
-            'account' : account,
-            'projectid' : projectId,
-        })
-    
-    def listProjectAccounts(self, projectId, account = "", keyword = "", page = "", pageSize = "", role = ""):
-        '''
-        Lists project's accounts
-        '''
-
-        return self.request("listProjectAccounts", {
-            'projectid' : projectId,
-            'account' : account,
-            'keyword' : keyword,
-            'page' : page,
-            'pagesize' : pageSize,
-            'role' : role,
-        })
-    
-    def enableStaticNat(self, ipAddressId, virtualMachineId, networkId = ""):
+    def enableStaticNat(self, ipAddressId, virtualMachineId, networkId = "", vmGuestIp = ""):
         '''
         Enables static nat for given ip address
         '''
@@ -1788,6 +2959,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'ipaddressid' : ipAddressId,
             'virtualmachineid' : virtualMachineId,
             'networkid' : networkId,
+            'vmguestip' : vmGuestIp,
         })
     
     def createIpForwardingRule(self, ipAddressId, protocol, startPort, cidrList = "", endPort = "", openFirewall = ""):
@@ -1841,6 +3013,72 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'ipaddressid' : ipAddressId,
         })
     
+    def createAffinityGroup(self, name, type, account = "", description = "", domainId = ""):
+        '''
+        Creates an affinity/anti-affinity group
+        '''
+
+        return self.request("createAffinityGroup", {
+            'name' : name,
+            'type' : type,
+            'account' : account,
+            'description' : description,
+            'domainid' : domainId,
+        })
+    
+    def deleteAffinityGroup(self, account = "", domainId = "", id = "", name = ""):
+        '''
+        Deletes affinity group
+        '''
+
+        return self.request("deleteAffinityGroup", {
+            'account' : account,
+            'domainid' : domainId,
+            'id' : id,
+            'name' : name,
+        })
+    
+    def listAffinityGroups(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", type = "", virtualMachineId = ""):
+        '''
+        Lists affinity groups
+        '''
+
+        return self.request("listAffinityGroups", {
+            'account' : account,
+            'domainid' : domainId,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+            'type' : type,
+            'virtualmachineid' : virtualMachineId,
+        })
+    
+    def updateVMAffinityGroup(self, id, affinityGroupIds = "", affinityGroupNames = ""):
+        '''
+        Updates the affinity/anti-affinity group associations of a virtual machine. The VM has to be stopped and restarted for the new properties to take effect.
+        '''
+
+        return self.request("updateVMAffinityGroup", {
+            'id' : id,
+            'affinitygroupids' : affinityGroupIds,
+            'affinitygroupnames' : affinityGroupNames,
+        })
+    
+    def listAffinityGroupTypes(self, keyword = "", page = "", pageSize = ""):
+        '''
+        Lists affinity group types available
+        '''
+
+        return self.request("listAffinityGroupTypes", {
+            'keyword' : keyword,
+            'page' : page,
+            'pagesize' : pageSize,
+        })
+    
     def createInstanceGroup(self, name, account = "", domainId = "", projectId = ""):
         '''
         Creates a vm group
@@ -1890,46 +3128,177 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'projectid' : projectId,
         })
     
-    def createSSHKeyPair(self, name, account = "", domainId = "", projectId = ""):
+    def updateResourceLimit(self, resourceType, account = "", domainId = "", max = "", projectId = ""):
         '''
-        Create a new keypair and returns the private key
+        Updates resource limits for an account or domain.
         '''
 
-        return self.request("createSSHKeyPair", {
-            'name' : name,
+        return self.request("updateResourceLimit", {
+            'resourcetype' : resourceType,
             'account' : account,
             'domainid' : domainId,
+            'max' : max,
             'projectid' : projectId,
         })
     
-    def deleteSSHKeyPair(self, name, account = "", domainId = "", projectId = ""):
+    def updateResourceCount(self, domainId, account = "", projectId = "", resourceType = ""):
         '''
-        Deletes a keypair by name
+        Recalculate and update resource count for an account or domain.
         '''
 
-        return self.request("deleteSSHKeyPair", {
-            'name' : name,
-            'account' : account,
+        return self.request("updateResourceCount", {
             'domainid' : domainId,
+            'account' : account,
             'projectid' : projectId,
+            'resourcetype' : resourceType,
         })
     
-    def listSSHKeyPairs(self, account = "", domainId = "", fingerprint = "", isRecursive = "", keyword = "", listAll = "", name = "", page = "", pageSize = "", projectId = ""):
+    def listResourceLimits(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", resourceType = ""):
         '''
-        List registered keypairs
+        Lists resource limits.
         '''
 
-        return self.request("listSSHKeyPairs", {
+        return self.request("listResourceLimits", {
             'account' : account,
             'domainid' : domainId,
-            'fingerprint' : fingerprint,
+            'id' : id,
             'isrecursive' : isRecursive,
             'keyword' : keyword,
             'listall' : listAll,
-            'name' : name,
             'page' : page,
             'pagesize' : pageSize,
             'projectid' : projectId,
+            'resourcetype' : resourceType,
+        })
+    
+    def getApiLimit(self, ):
+        '''
+        Get API limit count for the caller
+        '''
+
+        return self.request("getApiLimit", {
+        })
+    
+    def listEvents(self, account = "", domainId = "", duration = "", endDate = "", entryTime = "", id = "", isRecursive = "", keyword = "", level = "", listAll = "", page = "", pageSize = "", projectId = "", startDate = "", type = ""):
+        '''
+        A command to list events.
+        '''
+
+        return self.request("listEvents", {
+            'account' : account,
+            'domainid' : domainId,
+            'duration' : duration,
+            'enddate' : endDate,
+            'entrytime' : entryTime,
+            'id' : id,
+            'isrecursive' : isRecursive,
+            'keyword' : keyword,
+            'level' : level,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'startdate' : startDate,
+            'type' : type,
+        })
+    
+    def listEventTypes(self, ):
+        '''
+        List Event Types
+        '''
+
+        return self.request("listEventTypes", {
+        })
+    
+    def archiveEvents(self, endDate = "", ids = "", startDate = "", type = ""):
+        '''
+        Archive one or more events.
+        '''
+
+        return self.request("archiveEvents", {
+            'enddate' : endDate,
+            'ids' : ids,
+            'startdate' : startDate,
+            'type' : type,
+        })
+    
+    def deleteEvents(self, endDate = "", ids = "", startDate = "", type = ""):
+        '''
+        Delete one or more events.
+        '''
+
+        return self.request("deleteEvents", {
+            'enddate' : endDate,
+            'ids' : ids,
+            'startdate' : startDate,
+            'type' : type,
+        })
+    
+    def associateIpAddress(self, account = "", domainId = "", forDisplay = "", isPortable = "", networkId = "", projectId = "", regionId = "", vpcId = "", zoneId = ""):
+        '''
+        Acquires and associates a public IP to an account.
+        '''
+
+        return self.request("associateIpAddress", {
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'isportable' : isPortable,
+            'networkid' : networkId,
+            'projectid' : projectId,
+            'regionid' : regionId,
+            'vpcid' : vpcId,
+            'zoneid' : zoneId,
+        })
+    
+    def disassociateIpAddress(self, id):
+        '''
+        Disassociates an ip address from the account.
+        '''
+
+        return self.request("disassociateIpAddress", {
+            'id' : id,
+        })
+    
+    def listPublicIpAddresses(self, account = "", allocatedOnly = "", associatedNetworkId = "", domainId = "", forDisplay = "", forLoadBalancing = "", forVirtualNetwork = "", id = "", ipAddress = "", isRecursive = "", isSourceNat = "", isStaticNat = "", keyword = "", listAll = "", page = "", pageSize = "", physicalNetworkId = "", projectId = "", tags = "", vlanId = "", vpcId = "", zoneId = ""):
+        '''
+        Lists all public ip addresses
+        '''
+
+        return self.request("listPublicIpAddresses", {
+            'account' : account,
+            'allocatedonly' : allocatedOnly,
+            'associatednetworkid' : associatedNetworkId,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'forloadbalancing' : forLoadBalancing,
+            'forvirtualnetwork' : forVirtualNetwork,
+            'id' : id,
+            'ipaddress' : ipAddress,
+            'isrecursive' : isRecursive,
+            'issourcenat' : isSourceNat,
+            'isstaticnat' : isStaticNat,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'physicalnetworkid' : physicalNetworkId,
+            'projectid' : projectId,
+            'tags' : tags,
+            'vlanid' : vlanId,
+            'vpcid' : vpcId,
+            'zoneid' : zoneId,
+        })
+    
+    def updateIpAddress(self, id, customId = "", forDisplay = ""):
+        '''
+        Updates an ip address
+        '''
+
+        return self.request("updateIpAddress", {
+            'id' : id,
+            'customid' : customId,
+            'fordisplay' : forDisplay,
         })
     
     def createTags(self, resourceIds, resourceType, tags, customer = ""):
@@ -1976,161 +3345,95 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'value' : value,
         })
     
-    def registerTemplate(self, displayText, format, hypervisor, name, osTypeId, url, zoneId, account = "", bits = "", checksum = "", details = "", domainId = "", isExtractable = "", isFeatured = "", isPublic = "", passwordEnabled = "", projectId = "", requireShvm = "", sshkeyEnabled = "", templateTag = ""):
+    def addIpToNic(self, nicId, ipAddress = ""):
         '''
-        Registers an existing template into the CloudStack cloud.
-        '''
-
-        return self.request("registerTemplate", {
-            'displaytext' : displayText,
-            'format' : format,
-            'hypervisor' : hypervisor,
-            'name' : name,
-            'ostypeid' : osTypeId,
-            'url' : url,
-            'zoneid' : zoneId,
-            'account' : account,
-            'bits' : bits,
-            'checksum' : checksum,
-            'details' : details,
-            'domainid' : domainId,
-            'isextractable' : isExtractable,
-            'isfeatured' : isFeatured,
-            'ispublic' : isPublic,
-            'passwordenabled' : passwordEnabled,
-            'projectid' : projectId,
-            'requireshvm' : requireShvm,
-            'sshkeyenabled' : sshkeyEnabled,
-            'templatetag' : templateTag,
-        })
-    
-    def registerIso(self, displayText, name, url, zoneId, account = "", bootable = "", checksum = "", domainId = "", isExtractable = "", isFeatured = "", isPublic = "", osTypeId = "", projectId = ""):
-        '''
-        Registers an existing ISO into the CloudStack Cloud.
+        Assigns secondary IP to NIC
         '''
 
-        return self.request("registerIso", {
-            'displaytext' : displayText,
-            'name' : name,
-            'url' : url,
-            'zoneid' : zoneId,
-            'account' : account,
-            'bootable' : bootable,
-            'checksum' : checksum,
-            'domainid' : domainId,
-            'isextractable' : isExtractable,
-            'isfeatured' : isFeatured,
-            'ispublic' : isPublic,
-            'ostypeid' : osTypeId,
-            'projectid' : projectId,
-        })
-    
-    def registerSSHKeyPair(self, name, publicKey, account = "", domainId = "", projectId = ""):
-        '''
-        Register a public key in a keypair under a certain name
-        '''
-
-        return self.request("registerSSHKeyPair", {
-            'name' : name,
-            'publickey' : publicKey,
-            'account' : account,
-            'domainid' : domainId,
-            'projectid' : projectId,
-        })
-    
-    def updateResourceLimit(self, resourceType, account = "", domainId = "", max = "", projectId = ""):
-        '''
-        Updates resource limits for an account or domain.
-        '''
-
-        return self.request("updateResourceLimit", {
-            'resourcetype' : resourceType,
-            'account' : account,
-            'domainid' : domainId,
-            'max' : max,
-            'projectid' : projectId,
-        })
-    
-    def updateResourceCount(self, domainId, account = "", projectId = "", resourceType = ""):
-        '''
-        Recalculate and update resource count for an account or domain.
-        '''
-
-        return self.request("updateResourceCount", {
-            'domainid' : domainId,
-            'account' : account,
-            'projectid' : projectId,
-            'resourcetype' : resourceType,
-        })
-    
-    def listResourceLimits(self, account = "", domainId = "", id = "", isRecursive = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", resourceType = ""):
-        '''
-        Lists resource limits.
-        '''
-
-        return self.request("listResourceLimits", {
-            'account' : account,
-            'domainid' : domainId,
-            'id' : id,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'listall' : listAll,
-            'page' : page,
-            'pagesize' : pageSize,
-            'projectid' : projectId,
-            'resourcetype' : resourceType,
-        })
-    
-    def associateIpAddress(self, account = "", domainId = "", networkId = "", projectId = "", vpcId = "", zoneId = ""):
-        '''
-        Acquires and associates a public IP to an account.
-        '''
-
-        return self.request("associateIpAddress", {
-            'account' : account,
-            'domainid' : domainId,
-            'networkid' : networkId,
-            'projectid' : projectId,
-            'vpcid' : vpcId,
-            'zoneid' : zoneId,
-        })
-    
-    def disassociateIpAddress(self, id):
-        '''
-        Disassociates an ip address from the account.
-        '''
-
-        return self.request("disassociateIpAddress", {
-            'id' : id,
-        })
-    
-    def listPublicIpAddresses(self, account = "", allocatedOnly = "", associatedNetworkId = "", domainId = "", forLoadBalancing = "", forVirtualNetwork = "", id = "", ipAddress = "", isRecursive = "", isSourceNat = "", isStaticNat = "", keyword = "", listAll = "", page = "", pageSize = "", physicalNetworkId = "", projectId = "", tags = "", vlanId = "", vpcId = "", zoneId = ""):
-        '''
-        Lists all public ip addresses
-        '''
-
-        return self.request("listPublicIpAddresses", {
-            'account' : account,
-            'allocatedonly' : allocatedOnly,
-            'associatednetworkid' : associatedNetworkId,
-            'domainid' : domainId,
-            'forloadbalancing' : forLoadBalancing,
-            'forvirtualnetwork' : forVirtualNetwork,
-            'id' : id,
+        return self.request("addIpToNic", {
+            'nicid' : nicId,
             'ipaddress' : ipAddress,
-            'isrecursive' : isRecursive,
-            'issourcenat' : isSourceNat,
-            'isstaticnat' : isStaticNat,
+        })
+    
+    def removeIpFromNic(self, id):
+        '''
+        Removes secondary IP from the NIC.
+        '''
+
+        return self.request("removeIpFromNic", {
+            'id' : id,
+        })
+    
+    def listNics(self, virtualMachineId, forDisplay = "", keyword = "", networkId = "", nicId = "", page = "", pageSize = ""):
+        '''
+        list the vm nics  IP to NIC
+        '''
+
+        return self.request("listNics", {
+            'virtualmachineid' : virtualMachineId,
+            'fordisplay' : forDisplay,
             'keyword' : keyword,
-            'listall' : listAll,
+            'networkid' : networkId,
+            'nicid' : nicId,
             'page' : page,
             'pagesize' : pageSize,
-            'physicalnetworkid' : physicalNetworkId,
-            'projectid' : projectId,
-            'tags' : tags,
-            'vlanid' : vlanId,
-            'vpcid' : vpcId,
-            'zoneid' : zoneId,
+        })
+    
+    def configureInternalLoadBalancerElement(self, id, enabled):
+        '''
+        Configures an Internal Load Balancer element.
+        '''
+
+        return self.request("configureInternalLoadBalancerElement", {
+            'id' : id,
+            'enabled' : enabled,
+        })
+    
+    def createInternalLoadBalancerElement(self, nspId):
+        '''
+        Create an Internal Load Balancer element.
+        '''
+
+        return self.request("createInternalLoadBalancerElement", {
+            'nspid' : nspId,
+        })
+    
+    def listInternalLoadBalancerElements(self, enabled = "", id = "", keyword = "", nspId = "", page = "", pageSize = ""):
+        '''
+        Lists all available Internal Load Balancer elements.
+        '''
+
+        return self.request("listInternalLoadBalancerElements", {
+            'enabled' : enabled,
+            'id' : id,
+            'keyword' : keyword,
+            'nspid' : nspId,
+            'page' : page,
+            'pagesize' : pageSize,
+        })
+    
+    def configureOvsElement(self, id, enabled):
+        '''
+        Configures an ovs element.
+        '''
+
+        return self.request("configureOvsElement", {
+            'id' : id,
+            'enabled' : enabled,
+        })
+    
+    def listOvsElements(self, enabled = "", id = "", keyword = "", nspId = "", page = "", pageSize = ""):
+        '''
+        Lists all available ovs elements.
+        '''
+
+        return self.request("listOvsElements", {
+            'enabled' : enabled,
+            'id' : id,
+            'keyword' : keyword,
+            'nspid' : nspId,
+            'page' : page,
+            'pagesize' : pageSize,
         })
     
     def listOsTypes(self, description = "", id = "", keyword = "", osCategoryId = "", page = "", pageSize = ""):
@@ -2158,37 +3461,6 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'name' : name,
             'page' : page,
             'pagesize' : pageSize,
-        })
-    
-    def listEvents(self, account = "", domainId = "", duration = "", endDate = "", entryTime = "", id = "", isRecursive = "", keyword = "", level = "", listAll = "", page = "", pageSize = "", projectId = "", startDate = "", type = ""):
-        '''
-        A command to list events.
-        '''
-
-        return self.request("listEvents", {
-            'account' : account,
-            'domainid' : domainId,
-            'duration' : duration,
-            'enddate' : endDate,
-            'entrytime' : entryTime,
-            'id' : id,
-            'isrecursive' : isRecursive,
-            'keyword' : keyword,
-            'level' : level,
-            'listall' : listAll,
-            'page' : page,
-            'pagesize' : pageSize,
-            'projectid' : projectId,
-            'startdate' : startDate,
-            'type' : type,
-        })
-    
-    def listEventTypes(self, ):
-        '''
-        List Event Types
-        '''
-
-        return self.request("listEventTypes", {
         })
     
     def listDomains(self, id = "", keyword = "", level = "", listAll = "", name = "", page = "", pageSize = ""):
@@ -2221,6 +3493,27 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'pagesize' : pageSize,
         })
     
+    def listCapabilities(self, ):
+        '''
+        Lists capabilities
+        '''
+
+        return self.request("listCapabilities", {
+        })
+    
+    def listLdapConfigurations(self, hostname = "", keyword = "", page = "", pageSize = "", port = ""):
+        '''
+        Lists all LDAP configurations
+        '''
+
+        return self.request("listLdapConfigurations", {
+            'hostname' : hostname,
+            'keyword' : keyword,
+            'page' : page,
+            'pagesize' : pageSize,
+            'port' : port,
+        })
+    
     def queryAsyncJobResult(self, jobId):
         '''
         Retrieves the current status of asynchronous job.
@@ -2246,7 +3539,7 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'startdate' : startDate,
         })
     
-    def listZones(self, available = "", domainId = "", id = "", keyword = "", page = "", pageSize = "", showCapacities = ""):
+    def listZones(self, available = "", domainId = "", id = "", keyword = "", name = "", networkType = "", page = "", pageSize = "", showCapacities = "", tags = ""):
         '''
         Lists zones
         '''
@@ -2256,9 +3549,30 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'domainid' : domainId,
             'id' : id,
             'keyword' : keyword,
+            'name' : name,
+            'networktype' : networkType,
             'page' : page,
             'pagesize' : pageSize,
             'showcapacities' : showCapacities,
+            'tags' : tags,
+        })
+    
+    def listUsageRecords(self, endDate, startDate, account = "", accountId = "", domainId = "", keyword = "", page = "", pageSize = "", projectId = "", type = ""):
+        '''
+        Lists usage records for accounts
+        '''
+
+        return self.request("listUsageRecords", {
+            'enddate' : endDate,
+            'startdate' : startDate,
+            'account' : account,
+            'accountid' : accountId,
+            'domainid' : domainId,
+            'keyword' : keyword,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'type' : type,
         })
     
     def listServiceOfferings(self, domainId = "", id = "", isSystem = "", keyword = "", name = "", page = "", pageSize = "", systemVmType = "", virtualMachineId = ""):
@@ -2276,6 +3590,68 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'pagesize' : pageSize,
             'systemvmtype' : systemVmType,
             'virtualmachineid' : virtualMachineId,
+        })
+    
+    def listResourceDetails(self, resourceType, account = "", domainId = "", forDisplay = "", isRecursive = "", key = "", keyword = "", listAll = "", page = "", pageSize = "", projectId = "", resourceid = "", value = ""):
+        '''
+        List resource detail(s)
+        '''
+
+        return self.request("listResourceDetails", {
+            'resourcetype' : resourceType,
+            'account' : account,
+            'domainid' : domainId,
+            'fordisplay' : forDisplay,
+            'isrecursive' : isRecursive,
+            'key' : key,
+            'keyword' : keyword,
+            'listall' : listAll,
+            'page' : page,
+            'pagesize' : pageSize,
+            'projectid' : projectId,
+            'resourceid' : resourceid,
+            'value' : value,
+        })
+    
+    def listRegions(self, id = "", keyword = "", name = "", page = "", pageSize = ""):
+        '''
+        Lists Regions
+        '''
+
+        return self.request("listRegions", {
+            'id' : id,
+            'keyword' : keyword,
+            'name' : name,
+            'page' : page,
+            'pagesize' : pageSize,
+        })
+    
+    def listNetworkOfferings(self, availability = "", displayText = "", forVpc = "", guestIpType = "", id = "", isDefault = "", isTagged = "", keyword = "", name = "", networkId = "", page = "", pageSize = "", sourceNatSupported = "", specifyIpRanges = "", specifyVlan = "", state = "", supportedServices = "", tags = "", trafficType = "", zoneId = ""):
+        '''
+        Lists all available network offerings.
+        '''
+
+        return self.request("listNetworkOfferings", {
+            'availability' : availability,
+            'displaytext' : displayText,
+            'forvpc' : forVpc,
+            'guestiptype' : guestIpType,
+            'id' : id,
+            'isdefault' : isDefault,
+            'istagged' : isTagged,
+            'keyword' : keyword,
+            'name' : name,
+            'networkid' : networkId,
+            'page' : page,
+            'pagesize' : pageSize,
+            'sourcenatsupported' : sourceNatSupported,
+            'specifyipranges' : specifyIpRanges,
+            'specifyvlan' : specifyVlan,
+            'state' : state,
+            'supportedservices' : supportedServices,
+            'tags' : tags,
+            'traffictype' : trafficType,
+            'zoneid' : zoneId,
         })
     
     def logout(self, ):
@@ -2321,14 +3697,6 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
             'pagesize' : pageSize,
         })
     
-    def listCapabilities(self, ):
-        '''
-        Lists capabilities
-        '''
-
-        return self.request("listCapabilities", {
-        })
-    
     def getCloudIdentifier(self, userId):
         '''
         Retrieves a cloud identifier.
@@ -2336,5 +3704,14 @@ class CloudStackClient(BaseCloudStackClient.BaseCloudStackClient):
 
         return self.request("getCloudIdentifier", {
             'userid' : userId,
+        })
+    
+    def listApis(self, name = ""):
+        '''
+        lists all available apis on the server, provided by the Api Discovery plugin
+        '''
+
+        return self.request("listApis", {
+            'name' : name,
         })
     
