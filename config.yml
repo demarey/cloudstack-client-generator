@@ -2,7 +2,7 @@
 # check out if you have the latest version url here:
 # http://cloudstack.apache.org/docs/api/index.html
 #api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.2/TOC_Root_Admin.html 
-api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.2/TOC_Domain_Admin.html
+api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.4/TOC_Domain_Admin.html
 #api_ref_toc_url: http://cloudstack.apache.org/docs/api/apidocs-4.2/TOC_User.html 
 
 # API level (domain_admin, root_admin or user)
@@ -50,6 +50,8 @@ camel_case:
   broadcastdomainrange: broadcastDomainRange
   canusefordeploy: canUseForDeploy
   category: category
+  certchain: certChain
+  certid: certId
   certificate: certificate
   changecidr: changeCidr
   checksum: checksum
@@ -67,11 +69,13 @@ camel_case:
   cpunumber: cpuNumber
   cpuspeed: cpuSpeed
   customer: customer
+  customid: customId
   customized: customized
   description: description
   destinationphysicalnetworkid: destinationPhysicalNetworkId
   destroyvmgraceperiod: destroyVmGracePeriod
   destzoneid: destZoneId
+  deploymentplanner: deploymentPlanner
   details: details
   deviceid: deviceId
   dhcpprovider: dhcpProvider
@@ -100,9 +104,11 @@ camel_case:
   entrytime: entryTime
   esplifetime: espLifeTime
   esppolicy: espPolicy
+  expunge: expunge
   fetchlatest: fetchLatest
   fingerprint: fingerprint
   firstname: firstName
+  fordisplay: forDisplay
   forced: forced
   forcedestroylocalstorage: forceDestroyLocalStorage
   forloadbalancing: forLoadBalancing
@@ -172,6 +178,7 @@ camel_case:
   issystem: isSystem
   istagged: isTagged
   jobid: jobId
+  quiescevm: quiesceVm
   key: key
   keyboard: keyboard
   keypair: keyPair
@@ -182,6 +189,7 @@ camel_case:
   lbdevicededicated: lbDeviceDedicated
   lbdeviceid: lbDeviceId
   lbruleid: lbruleId
+  lbvmips: lbVmIps
   level: level
   limitcpuuse: limitCpuUse
   listall: listAll
@@ -224,6 +232,7 @@ camel_case:
   pagesize: pageSize
   param: param
   parentdomainid: parentDomainId
+  passive: passive
   password: password
   passwordenabled: passwordEnabled
   path: path
@@ -258,12 +267,14 @@ camel_case:
   responsetimeout: responseTimeout
   restartrequired: restartRequired
   role: role
+  rootdisksize: rootDiskSize
   s2scustomergatewayid: s2sCustomerGatewayId
   s2svpngatewayid: s2sVpnGatewayId
   scaledownpolicyids: scaleDownPolicyIds
   scaleuppolicyids: scaleUpPolicyIds
   schedule: schedule
   scheme: scheme
+  showremoved: showRemoved
   shrinkok: shrinkOk
   searchbase: searchBase
   securitygroupenabled: securityGroupEnabled
@@ -295,6 +306,7 @@ camel_case:
   specifyvlan: specifyVlan
   sshkeyenabled: sshkeyEnabled
   ssl: ssl
+  start: start
   startdate: startDate
   startip: startIp
   startipv6: startIpV6
@@ -326,10 +338,12 @@ camel_case:
   usersecretkey: userSecretKey
   usersecuritygrouplist: userSecurityGroupList
   value: value
+  version: version
   virtualmachineid: virtualMachineId
   virtualmachineids: virtualMachineIds
   vlan: vlan
   vlanid: vlanId
+  vmidipmap: vmIdIpMap
   vmgroupid: vmGroupId
   vmguestip: vmGuestIp
   vmprofileid: vmProfileId
